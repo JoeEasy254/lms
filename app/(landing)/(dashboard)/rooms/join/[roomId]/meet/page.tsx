@@ -14,7 +14,7 @@ import { Track } from "livekit-client";
 import { useEffect, useMemo, useState } from "react";
 import Chat from "./components/Chat";
 
-export default function page({ params }: { params: { roomId: string } }) {
+export default function MeetPage({ params }: { params: { roomId: string } }) {
   // TODO: get user input for room and name
   const room = "quickstart-room";
   const name = "quickstart-user";
