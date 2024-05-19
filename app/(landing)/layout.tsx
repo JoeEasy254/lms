@@ -61,9 +61,9 @@ export default function HomeLayout({
                   <UserButton />
 
                   <SignedIn>
-                    <SignOutButton
-                      children={<LogOut className="cursor-pointer" />}
-                    />
+                    <SignOutButton>
+                      <LogOut className="cursor-pointer" />
+                    </SignOutButton>
                   </SignedIn>
                 </div>
               </ClerkLoaded>

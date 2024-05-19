@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Room as R, User } from "@prisma/client";
 import axios from "axios";
 import { Trash } from "lucide-react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -55,7 +56,7 @@ export default function Room({ room }: { room: RoomProps }) {
 
   return (
     <div className="w-[400px] bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-sm">
-      <img
+      <Image
         alt="Room Thumbnail"
         className="w-full hover:border-2 border-green-500 cursor-pointer "
         height={225}

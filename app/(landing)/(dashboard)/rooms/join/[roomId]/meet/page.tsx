@@ -32,7 +32,7 @@ export default function MeetPage({ params }: { params: { roomId: string } }) {
         console.error(e);
       }
     })();
-  }, []);
+  }, [params.roomId]);
 
   if (token === "") {
     return <div>Getting token...</div>;

@@ -29,7 +29,7 @@ export default async function RoomPage() {
         </div>
         <div className="flex flex-col space-y-3 md:space-y-0 md:grid grid-cols-2 ">
           {rooms.map((room) => (
-            <Room room={room} />
+            <Room room={room} key={room.id}/>
           ))}
         </div>
       </div>
