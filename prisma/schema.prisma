@@ -19,10 +19,8 @@ model User {
   userId    String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  roomId    String?
-  Room      Room?    @relation(fields: [roomId], references: [id])
 
-  @@index([roomId])
+  rooms Room[]
 }
 
 model Room {

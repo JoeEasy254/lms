@@ -24,11 +24,8 @@ export async function GET(req: NextRequest) {
         }
     })
     const existingUser = r?.participants.find(item => item.id === user?.id)
-    console.log("existingUser", existingUser)
     if (!existingUser) {
 
-
-        console.log("fetched user", fetchedUser)
         if (fetchedUser) {
             r?.participants.push(fetchedUser)
         }

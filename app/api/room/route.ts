@@ -18,16 +18,21 @@ export async function POST(request: Request) {
             }
         })
 
-        await db.user.create({
-            data: {
-                userId: String(userId),
-                roomId: room.id,
-                username: current?.firstName?.toString() || String(current?.lastName)
+
+        const foundUser = await db.user.findUnique({
+            where: {
+                userId: String(userId)
             }
         })
+        if (!foundUser) {
+            await db.user.create({
+                data: {
+                    userId: String(userId),
+                    username: current?.firstName?.toString() || String(current?.lastName)
+                }
+            })
 
-
-
+        }
 
         return new NextResponse('created')
     } catch (error) {

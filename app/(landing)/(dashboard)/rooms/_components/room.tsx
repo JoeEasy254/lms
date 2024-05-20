@@ -23,8 +23,9 @@ export default function Room({ room }: { room: RoomProps }) {
   const JoinRoom = () => {
     (async () => {
       try {
-        const resp = await fetch(`/api/get-participant-token?room=${room.id}`);
-        const data = await resp.json();
+        const info = await axios.post("/api/room/join", { roomId: room.id });
+
+        await fetch(`/api/get-participant-token?room=${room.id}`);
       } catch (e) {
         console.error(e);
       }
