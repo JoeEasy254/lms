@@ -132,8 +132,15 @@ export default function Tests() {
     }
 
     setCelebrate(false);
-  }, [score]);
+  }, [score, questions.length]);
 
+  const fetchCategories = () => {
+    const categortyItems = new Set();
+    quizzes.map((quiz) => {
+      categortyItems.add(quiz.category);
+    });
+    setCategories(Array.from(categortyItems));
+  };
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -173,25 +180,13 @@ export default function Tests() {
     }, 3000);
   };
 
-  const fetchCategories = () => {
-    const categortyItems = new Set();
-    quizzes.map((quiz) => {
-      categortyItems.add(quiz.category);
-    });
-    setCategories(Array.from(categortyItems));
-  };
-
   return (
     <>
       <div className="flex gap-x-[50px] mt-4  items-center justify-center ">
         {categories?.map((category) => {
           return (
-            <div>
-              <Button
-                key={String(category)}
-                disabled={load}
-                onClick={() => filterCategory(category)}
-              >
+            <div key={String(category)}>
+              <Button disabled={load} onClick={() => filterCategory(category)}>
                 {load ? <LoaderCircle className="animate-spin h-3 w-3" /> : ""}{" "}
                 {String(category)}
               </Button>
