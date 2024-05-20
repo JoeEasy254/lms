@@ -196,6 +196,7 @@ export default function Tests() {
       </div>
 
       <div className="flex flex-col h-screen items-center mt-[15px] ">
+        {current === quizzes.length - 1 && <h1>Its Over</h1>}
         {/* <Confetti
           numberOfPieces={1100}
           run={celebrate}

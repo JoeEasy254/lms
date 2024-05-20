@@ -18,8 +18,8 @@ export default function RoomBtnEvents() {
     <div className=" flex mx-4 my-4">
       <div className="flex space-x-4">
         <Button onClick={createRoom}>Create a room </Button>
-
-        <Button onClick={JoinRoom}>Join a room</Button>
+{/* 
+        <Button onClick={JoinRoom}>Join a room</Button> */}
       </div>
     </div>
   );

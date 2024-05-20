@@ -1,4 +1,5 @@
 
+import { ModeToggle } from "@/components/ModeToggle";
 import Link from "next/link";
 
 interface RoutesProps {
@@ -20,6 +21,9 @@ export default function SideNav({ routes }: RoutesProps) {
               </li>
             </>
           ))}
+          <li>
+            <ModeToggle />
+          </li>
         </ul>
       </div>
     </div>

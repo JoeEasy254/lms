@@ -1,12 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 import { Room as R, User } from "@prisma/client";
 import axios from "axios";
 import { Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import toast from "react-hot-toast";
 
 interface RoomProps {
   id: string;
@@ -47,8 +46,11 @@ export default function Room({ room }: { room: RoomProps }) {
           ...obj,
         },
       });
+      toast({
+        title: "Alert",
+        description: "room removed",
+      });
 
-      toast.success("room removed");
       router.refresh();
     } catch (error) {
       console.log(error);

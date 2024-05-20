@@ -2,7 +2,7 @@
 import LiveKitConfig from "@/app/livekit";
 import { LocalUserChoices, PreJoin, RoomName } from "@livekit/components-react";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
+
 
 interface Data {
   roomName: string | undefined;

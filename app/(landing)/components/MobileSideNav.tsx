@@ -1,5 +1,6 @@
 "use client";
 
+import { ModeToggle } from "@/components/ModeToggle";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
@@ -37,6 +38,10 @@ export function MobileSideNav({ routes }: RoutesProps) {
               <ClerkLoaded>
                 <UserButton />
               </ClerkLoaded>
+            </li>
+
+            <li>
+              <ModeToggle/>
             </li>
           </ul>
         </SheetContent>

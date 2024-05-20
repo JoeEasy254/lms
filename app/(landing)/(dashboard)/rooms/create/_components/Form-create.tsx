@@ -15,8 +15,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import toast from "react-hot-toast";
+
 import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
@@ -27,7 +28,7 @@ export const CreateForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "create a room",
+      name: "",
     },
   });
   const { isSubmitting, isValid } = form.formState;
@@ -36,11 +37,17 @@ export const CreateForm = () => {
     // create a user
     try {
       const room = await axios.post("/api/room", { name: values.name });
-
-      router.push(`/rooms/join/${room.data.id}`);
+         toast({
+           title: "Alert",
+           description: "Room created",
+         });
+      // router.push(`/rooms/join/${room.data.id}`);
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+        toast({
+          title: "Error",
+          description: "Something went wrong",
+        })
     }
   }
   return (

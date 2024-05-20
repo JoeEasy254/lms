@@ -9,7 +9,8 @@ import {
 } from "@clerk/nextjs";
 import { Loader, LogOut } from "lucide-react";
 import { MobileSideNav } from "./components/MobileSideNav";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "@/components/ui/toaster";
+import { ModeToggle } from "@/components/ModeToggle";
 
 export default function HomeLayout({
   children,
@@ -67,6 +68,7 @@ export default function HomeLayout({
               </ClerkLoading>
               <ClerkLoaded>
                 <div className="flex flex-row items-center gap-x-4">
+                  <ModeToggle />
                   <UserButton />
 
                   <SignedIn>
