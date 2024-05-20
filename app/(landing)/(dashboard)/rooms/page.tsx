@@ -14,7 +14,7 @@ export default async function RoomPage() {
   });
 
   return (
-    <div className="w-full  py-6 px-4 md:px-6">
+    <div className="w-full  py-6  md:px-6">
       <div className="">
         <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row items-center justify-between mb-6">
           <h1 className="text-2xl font-bold">Webconferencing Rooms</h1>
