@@ -3,7 +3,7 @@
 function CodePage() {
   return (
     <>
-      <div className="container mt-[20px]">
+      <div className="container mt-[20px] overflow-auto">
         <iframe
           src="https://www.programiz.com/html/online-compiler/"
           width="700"

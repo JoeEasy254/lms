@@ -4,8 +4,8 @@ import Image from "next/image";
 export default async function Leaderboard() {
   const user: any = await currentUser();
   return (
-    <div>
-      <table className="p-2 m-4 mx-auto w-[600px] md:[w-:600px] flex justify-center items-center flex-col">
+    <div className="container">
+      <table className="p-2 m-4 mx-auto overflow-auto md:[w-:600px] flex md:justify-center md:items-center flex-col">
         <thead>
           <tr className="flex flex-row justify-between space-x-[160px] w-[600px] bg-white p-2 rounded">
             <th>Rank</th>
