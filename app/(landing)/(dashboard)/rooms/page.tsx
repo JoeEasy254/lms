@@ -27,9 +27,9 @@ export default async function RoomPage() {
             />
           </div>
         </div>
-        <div className="flex flex-col space-y-3 md:space-y-0 md:grid grid-cols-2 ">
+        <div className="mx-4 my-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {rooms.map((room) => (
-            <Room room={room} key={room.id}/>
+            <Room room={room} key={room.id} />
           ))}
         </div>
       </div>

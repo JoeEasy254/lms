@@ -24,9 +24,9 @@ export function MobileSideNav({ routes }: RoutesProps) {
           <ul className="relative flex flex-col space-y-[20px] mx-4 my-4">
             {routes.map((route) => (
               <>
-                <Link href={route.path}>
-                  <li className="flex items-center gap-x-2 ">{route.name}</li>
-                </Link>
+                <li className="flex items-center gap-x-2 ">
+                  <Link href={route.path}>{route.name}</Link>
+                </li>
               </>
             ))}
             <li className="flex items-center gap-x-2 ">

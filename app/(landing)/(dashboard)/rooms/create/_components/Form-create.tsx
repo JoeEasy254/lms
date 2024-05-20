@@ -36,7 +36,7 @@ export const CreateForm = () => {
     // create a user
     try {
       const room = await axios.post("/api/room", { name: values.name });
-      toast.success("room created");
+
       router.push(`/rooms/join/${room.data.id}`);
     } catch (error) {
       console.log(error);

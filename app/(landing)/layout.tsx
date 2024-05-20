@@ -33,6 +33,15 @@ export default function HomeLayout({
       name: "playground",
       path: "/mirror",
     },
+
+    {
+      name: "quizzes",
+      path: "/quizzes",
+    },
+    {
+      name: "Leaderboard",
+      path: "/leaderboard",
+    },
   ];
   return (
     <>

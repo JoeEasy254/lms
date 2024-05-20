@@ -9,14 +9,8 @@ export async function POST(request: Request) {
         const { userId } = auth()
         const current = await currentUser()
 
-        // check if user has a romm before creation
-        const getRoomUser = await db.room.findMany({
-            where: {
-                userId: String(userId)
-            }
-        })
 
-        if (getRoomUser.length > 0) return;
+
         const room = await db.room.create({
             data: {
                 name,
@@ -35,7 +29,7 @@ export async function POST(request: Request) {
 
 
 
-        return NextResponse.json(room)
+        return new NextResponse('created')
     } catch (error) {
         console.log(error)
     }

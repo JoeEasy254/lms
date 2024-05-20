@@ -55,7 +55,7 @@ export default function Room({ room }: { room: RoomProps }) {
   };
 
   return (
-    <div className="w-[400px] bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-sm">
+    <div className=" bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-sm">
       <Image
         alt="Room Thumbnail"
         className=" hover:border-2 border-green-500 cursor-pointer "
