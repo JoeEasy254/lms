@@ -16,7 +16,7 @@ export default async function RoomPage() {
   return (
     <div className="w-full  py-6  md:px-6">
       <div className="">
-        <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row items-center justify-between mb-6">
+        <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row  justify-between mb-6">
           <h1 className="text-2xl font-bold">Webconferencing Rooms</h1>
           <div className="relative w-full max-w-md">
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400" />
@@ -27,7 +27,7 @@ export default async function RoomPage() {
             />
           </div>
         </div>
-        <div className="mx-4 my-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        <div className=" my-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {rooms.map((room) => (
             <Room room={room} key={room.id} />
           ))}
