@@ -83,7 +83,7 @@ export default function HomeLayout({
             <Toaster />
             {children}
           </div>
-          <div className="absolute top-0 right-4">
+          <div >
             <div className="mx-4 my-2 flex justify-end">
               <ClerkLoading>
                 <Loader className="mr-2 w-5 h-5 animate-spin" />
