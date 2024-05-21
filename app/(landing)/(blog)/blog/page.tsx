@@ -16,9 +16,9 @@ import { CardContent, Card } from "@/components/ui/card";
 export default function Blogpage() {
   return (
     <>
-      <main className="w-full ">
+      <main className="w-full">
         <section className="py-16 md:py-24 ">
-          <div className="container">
+          <div >
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
               <div className="flex flex-col justify-center">
                 <span className="mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-400">
@@ -56,7 +56,7 @@ export default function Blogpage() {
           </div>
         </section>
         <section className="py-12 md:py-16">
-          <div className="container">
+          <div >
             <div className="mb-8 flex items-center justify-between">
               <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
                 Recent Posts
