@@ -79,11 +79,11 @@ export default function HomeLayout({
               <MobileSideNav routes={routes} />
             </div>
           </div>
-          <div className="mt-[50px]  border-t-2">
+          <div className="mt-[50px] w-full  border-t-2">
             <Toaster />
             {children}
           </div>
-          <div >
+          <div className="absolute top-0 right-4">
             <div className="mx-4 my-2 flex justify-end">
               <ClerkLoading>
                 <Loader className="mr-2 w-5 h-5 animate-spin" />

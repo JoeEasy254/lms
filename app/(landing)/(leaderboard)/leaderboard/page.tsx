@@ -32,7 +32,7 @@ export default function Leaderboard() {
               </h2>
             </div>
             <div className="border rounded-lg overflow-hidden">
-              <Table >
+              <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-[32px]">Rank</TableHead>
