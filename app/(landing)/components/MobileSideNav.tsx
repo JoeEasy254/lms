@@ -6,11 +6,13 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
 import { Loader, Menu, User, UserCircle } from "lucide-react";
 import Link from "next/link";
+import React from "react";
 
 interface RoutesProps {
   routes: {
     name: String;
     path: string;
+    icon: React.ReactElement;
   }[];
 }
 
@@ -26,7 +28,12 @@ export function MobileSideNav({ routes }: RoutesProps) {
             {routes.map((route) => (
               <>
                 <li className="flex items-center gap-x-2 ">
-                  <Link href={route.path}>{route.name}</Link>
+                  <Link
+                    className="flex items-center  gap-x-2 "
+                    href={route.path}
+                  >
+                    {route.icon} {route.name}
+                  </Link>
                 </li>
               </>
             ))}
@@ -41,7 +48,7 @@ export function MobileSideNav({ routes }: RoutesProps) {
             </li>
 
             <li>
-              <ModeToggle/>
+              <ModeToggle />
             </li>
           </ul>
         </SheetContent>

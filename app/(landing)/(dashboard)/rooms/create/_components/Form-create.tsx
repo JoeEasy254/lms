@@ -24,9 +24,9 @@ import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
-  title: z.string().min(5).max(50),
+  title: z.string().min(2).max(50),
   description: z.string().min(5).max(50),
-  price: z.number(),
+  price: z.coerce.number(),
 });
 
 export const CreateForm = () => {
@@ -46,7 +46,13 @@ export const CreateForm = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // create a user
     try {
-      const room = await axios.post("/api/room", { name: values.name });
+      const room = await axios.post("/api/room", {
+        name: values.name,
+        title: values.title,
+        price: values.price,
+        date,
+        description: values.description,
+      });
       toast({
         title: "Alert",
         description: "Room created",
@@ -60,6 +66,7 @@ export const CreateForm = () => {
       });
     }
   }
+
   return (
     <>
       <Form {...form}>
@@ -95,6 +102,20 @@ export const CreateForm = () => {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="price"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Price</FormLabel>
+                <FormControl>
+                  <Input type="number" placeholder="price" {...field} />
+                </FormControl>
+                <FormDescription>Session price</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <FormField
             control={form.control}
@@ -123,9 +144,7 @@ export const CreateForm = () => {
               className="rounded-md border"
             />
           </div>
-          <Button disabled={isSubmitting || !isValid} type="submit">
-            Submit
-          </Button>
+          <Button disabled={isSubmitting || !isValid} type="submit">Submit</Button>
         </form>
       </Form>
     </>

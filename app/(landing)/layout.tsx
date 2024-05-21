@@ -7,7 +7,16 @@ import {
   SignedIn,
   UserButton,
 } from "@clerk/nextjs";
-import { Loader, LogOut } from "lucide-react";
+import {
+  BookOpenCheck,
+  Code,
+  LayoutDashboard,
+  Loader,
+  LogOut,
+  SquareLibrary,
+  Trophy,
+  UserRoundCog,
+} from "lucide-react";
 import { MobileSideNav } from "./components/MobileSideNav";
 import { Toaster } from "@/components/ui/toaster";
 import { ModeToggle } from "@/components/ModeToggle";
@@ -21,27 +30,33 @@ export default function HomeLayout({
     {
       name: "Dashboard",
       path: "/",
+      icon: <LayoutDashboard />,
     },
     {
       name: "Rooms",
       path: "/rooms",
+      icon: <SquareLibrary />,
     },
     {
       name: "Account",
       path: "/myaccount",
+      icon: <UserRoundCog />,
     },
     {
       name: "playground",
       path: "/mirror",
+      icon: <Code />,
     },
 
     {
       name: "quizzes",
       path: "/quizzes",
+      icon: <BookOpenCheck />,
     },
     {
       name: "Leaderboard",
       path: "/leaderboard",
+      icon: <Trophy />,
     },
   ];
   return (

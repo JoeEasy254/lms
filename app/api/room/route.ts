@@ -5,7 +5,7 @@ import { NextResponse } from "next/server"
 
 export async function POST(request: Request) {
     try {
-        const { name } = await request.json()
+        const { name, title, description, price, date } = await request.json()
         const { userId } = auth()
         const current = await currentUser()
 
@@ -14,6 +14,10 @@ export async function POST(request: Request) {
         const room = await db.room.create({
             data: {
                 name,
+                title,
+                description,
+                date,
+                price,
                 userId: String(userId)
             }
         })

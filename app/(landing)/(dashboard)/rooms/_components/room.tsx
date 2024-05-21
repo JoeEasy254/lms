@@ -1,23 +1,29 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
+import { useAuth } from "@clerk/nextjs";
 import { Room as R, User } from "@prisma/client";
 import axios from "axios";
 import { Trash } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
 interface RoomProps {
   id: string;
   name: string;
   createdAt: Date;
   updatedAt: Date;
+  title: string;
+  description: string;
+  date: string;
+  price: number;
   userId: string;
   participants: User[];
 }
 
 export default function Room({ room }: { room: RoomProps }) {
   const router = useRouter();
+  const auth = useAuth();
 
   const JoinRoom = () => {
     (async () => {
@@ -58,7 +64,7 @@ export default function Room({ room }: { room: RoomProps }) {
   };
 
   return (
-    <div className=" bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-sm">
+    <div className="md:w-[400px] bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-sm">
       <Image
         alt="Room Thumbnail"
         className=" hover:border-2 border-green-500 cursor-pointer "
@@ -72,18 +78,38 @@ export default function Room({ room }: { room: RoomProps }) {
       />
       <div className="p-4">
         <h3 className="text-lg font-medium mb-2">{room.name}</h3>
+        <div>
+          <ul className="flex space-y-4 flex-col ">
+            <li className="flex justify-between">
+              <span>Title: </span> {room.title}
+            </li>
+            <li className="flex space-x-2 justify-between">
+              <span>Description: </span>{" "}
+              <p className="line-clamp-4">{room.description}</p>
+            </li>
+            <li className="flex justify-between items-center">
+              <p>Price: </p> <Badge variant="outline"> {room.price}</Badge>
+            </li>
+            <li className="flex justify-around">
+              <span>Date: </span>{" "}
+              <p className="line-clamp-4">{room.date.split("T")[0]}</p>
+            </li>
+          </ul>
+        </div>
+
         <div className="flex items-center text-gray-500 dark:text-gray-400 mb-4">
           <UsersIcon className="w-4 h-4 mr-2" />
           <span>{Array.from(room.participants).length} participants</span>
         </div>
         <div className="flex items-center  justify-between">
-          <Button onClick={JoinRoom} size="sm">
+          <Button className="w-full" onClick={JoinRoom} size="sm">
             Join Room
           </Button>
-
-          <Button variant={"ghost"} onClick={removeRoom} size="sm">
-            <Trash /> Remove
-          </Button>
+          {auth.userId == room.userId && (
+            <Button variant={"ghost"} onClick={removeRoom} size="sm">
+              <Trash /> Remove
+            </Button>
+          )}
         </div>
       </div>
     </div>

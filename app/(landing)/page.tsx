@@ -21,8 +21,8 @@ export default async function Home() {
       <RoomBtnEvents />
 
       {/* my rooms */}
-      <div className="mx-4 my-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {rooms.map((room) => (
+      <div className="m-4 flex flex-wrap space-x-4 items-center">
+        {rooms.map((room: any) => (
           <Room room={room} key={room.id} />
         ))}
       </div>
