@@ -1,117 +1,179 @@
-import { currentUser } from "@clerk/nextjs/server";
-import Image from "next/image";
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/484ZG4Daaz2
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
+import {
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenu,
+} from "@/components/ui/dropdown-menu";
+import Link from "next/link";
+import {
+  TableHead,
+  TableRow,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Table,
+} from "@/components/ui/table";
+import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 
-export default async function Leaderboard() {
-  const user: any = await currentUser();
+export default function Leaderboard() {
   return (
-    <div className="container">
-      <table className=" p-2 m-4 mx-auto overflow-auto md:[w-:600px] flex md:justify-center md:items-center flex-col ">
-        <thead>
-          <tr className="flex flex-row justify-between space-x-[160px] w-[600px] p-2 rounded">
-            <th>Rank</th>
-            <th>User</th>
-            <th>Points</th>
-          </tr>
-        </thead>
-        <tbody className="w-[600px] h-[70vh] md:overflow-auto overflow-y-auto md:overflow-x-hidden mt-3 ">
-          <tr className="flex justify-between w-[600px]  p-2 rounded shadow-md my-3 items-center">
-            <td className="flex space-x-2 items-center w-[50px] h-[50px] ">
-              <h1>1</h1>
-              <div className="border-2 rounded-full border-blue-400">
-                <Image
-                  className="rounded-full cursor-pointer"
-                  alt="user icon"
-                  width={40}
-                  height={40}
-                  src={user?.hasImage && user.imageUrl}
-                />
-              </div>
-            </td>
-            <td>JosephMuchene</td>
-            <td>20000</td>
-          </tr>
-          <tr className="flex justify-between w-[600px]  p-2 rounded shadow-md my-3 items-center">
-            <td className="flex space-x-2 items-center w-[50px] h-[50px] ">
-              <h1>1</h1>
-              <div className="border-2 rounded-full border-blue-400">
-                <Image
-                  className="rounded-full cursor-pointer"
-                  alt="user icon"
-                  width={40}
-                  height={40}
-                  src={user?.hasImage && user.imageUrl}
-                />
-              </div>
-            </td>
-            <td>JosephMuchene</td>
-            <td>20000</td>
-          </tr>
-          <tr className="flex justify-between w-[600px] p-2 rounded shadow-md my-3 items-center">
-            <td className="flex space-x-2 items-center w-[50px] h-[50px] ">
-              <h1>1</h1>
-              <div className="border-2 rounded-full border-blue-400">
-                <Image
-                  className="rounded-full cursor-pointer"
-                  alt="user icon"
-                  width={40}
-                  height={40}
-                  src={user?.hasImage && user.imageUrl}
-                />
-              </div>
-            </td>
-            <td>JosephMuchene</td>
-            <td>20000</td>
-          </tr>
-          <tr className="flex justify-between w-[600px] p-2 rounded shadow-md my-3 items-center">
-            <td className="flex space-x-2 items-center w-[50px] h-[50px] ">
-              <h1>1</h1>
-              <div className="border-2 rounded-full border-blue-400">
-                <Image
-                  className="rounded-full cursor-pointer"
-                  alt="user icon"
-                  width={40}
-                  height={40}
-                  src={user?.hasImage && user.imageUrl}
-                />
-              </div>
-            </td>
-            <td>JosephMuchene</td>
-            <td>20000</td>
-          </tr>
-          <tr className="flex justify-between w-[600px]  p-2 rounded shadow-md my-3 items-center">
-            <td className="flex space-x-2 items-center w-[50px] h-[50px] ">
-              <h1>1</h1>
-              <div className="border-2 rounded-full border-blue-400">
-                <Image
-                  className="rounded-full cursor-pointer"
-                  alt="user icon"
-                  width={40}
-                  height={40}
-                  src={user?.hasImage && user.imageUrl}
-                />
-              </div>
-            </td>
-            <td>JosephMuchene</td>
-            <td>20000</td>
-          </tr>
-          <tr className="flex justify-between w-[600px]  p-2 rounded shadow-md my-3 items-center">
-            <td className="flex space-x-2 items-center w-[50px] h-[50px] ">
-              <h1>1</h1>
-              <div className="border-2 rounded-full border-blue-400">
-                <Image
-                  className="rounded-full cursor-pointer"
-                  alt="user icon"
-                  width={40}
-                  height={40}
-                  src={user?.hasImage && user.imageUrl}
-                />
-              </div>
-            </td>
-            <td>JosephMuchene</td>
-            <td>20000</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <>
+      <main className="w-full ">
+        <section className="py-12 md:py-16">
+          <div className="container">
+            <div className="mb-8 flex items-center justify-between">
+              <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+                Leaderboard
+              </h2>
+            </div>
+            <div className="border rounded-lg overflow-hidden">
+              <Table className="md:w-[750px]">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[32px]">Rank</TableHead>
+                    <TableHead>User</TableHead>
+                    <TableHead className="text-right">Points</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>1</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-4">
+                        <Avatar>
+                          <AvatarImage alt="User" src="/placeholder-user.jpg" />
+                          <AvatarFallback>JD</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-medium">John Doe</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">
+                            Online Learning
+                          </div>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right">1250</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>2</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-4">
+                        <Avatar>
+                          <AvatarImage alt="User" src="/placeholder-user.jpg" />
+                          <AvatarFallback>SA</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-medium">Sarah Anderson</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">
+                            Productivity
+                          </div>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right">1100</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>3</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-4">
+                        <Avatar>
+                          <AvatarImage alt="User" src="/placeholder-user.jpg" />
+                          <AvatarFallback>MJ</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-medium">Michael Johnson</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">
+                            Education Technology
+                          </div>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right">950</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>4</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-4">
+                        <Avatar>
+                          <AvatarImage alt="User" src="/placeholder-user.jpg" />
+                          <AvatarFallback>LW</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-medium">Lisa Williams</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">
+                            Career Development
+                          </div>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right">900</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>5</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-4">
+                        <Avatar>
+                          <AvatarImage alt="User" src="/placeholder-user.jpg" />
+                          <AvatarFallback>JR</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-medium">Jessica Ramos</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">
+                            Online Learning
+                          </div>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right">850</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>6</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-4">
+                        <Avatar>
+                          <AvatarImage alt="User" src="/placeholder-user.jpg" />
+                          <AvatarFallback>EG</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-medium">Emily Garcia</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">
+                            Education Technology
+                          </div>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right">800</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}
+
+function ChevronDownIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
   );
 }

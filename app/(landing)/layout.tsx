@@ -8,6 +8,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import {
+  BookOpen,
   BookOpenCheck,
   Code,
   LayoutDashboard,
@@ -59,6 +60,11 @@ export default function HomeLayout({
       path: "/leaderboard",
       icon: <Trophy />,
     },
+    {
+      name: "Blog",
+      path: "/blog",
+      icon: <BookOpen />,
+    },
   ];
   return (
     <>
@@ -85,7 +91,7 @@ export default function HomeLayout({
               <ClerkLoaded>
                 <div className="flex flex-row items-center gap-x-4 justify-between">
                   <ul className="flex items-center space-x-3">
-                    <li>
+                    <li className="hidden md:block">
                       <Link
                         className="hover:border-b-2 border-[#ddd]"
                         href={"/blog"}
@@ -93,7 +99,7 @@ export default function HomeLayout({
                         Blog
                       </Link>
                     </li>
-                    <li>
+                    <li className="hidden md:block">
                       <Link
                         className="hover:border-b-2 border-[#ddd]"
                         href={"#"}
