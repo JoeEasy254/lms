@@ -20,6 +20,7 @@ import {
 import { MobileSideNav } from "./components/MobileSideNav";
 import { Toaster } from "@/components/ui/toaster";
 import { ModeToggle } from "@/components/ModeToggle";
+import Link from "next/link";
 
 export default function HomeLayout({
   children,
@@ -72,7 +73,7 @@ export default function HomeLayout({
               <MobileSideNav routes={routes} />
             </div>
           </div>
-          <div className=" w-full mt-[50px]  border-t-2">
+          <div className=" container mt-[50px]  border-t-2">
             <Toaster />
             {children}
           </div>
@@ -82,7 +83,25 @@ export default function HomeLayout({
                 <Loader className="mr-2 w-5 h-5 animate-spin" />
               </ClerkLoading>
               <ClerkLoaded>
-                <div className="flex flex-row items-center gap-x-4">
+                <div className="flex flex-row items-center gap-x-4 justify-between">
+                  <ul className="flex items-center space-x-3">
+                    <li>
+                      <Link
+                        className="hover:border-b-2 border-[#ddd]"
+                        href={"#"}
+                      >
+                        Blog
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="hover:border-b-2 border-[#ddd]"
+                        href={"#"}
+                      >
+                        Help
+                      </Link>
+                    </li>
+                  </ul>
                   <ModeToggle />
                   <UserButton />
 

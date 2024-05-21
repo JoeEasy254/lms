@@ -6,7 +6,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import React from "react";
 
 function CodePage() {
-  const [value, setValue] = React.useState("Have fun writing javascript code;");
+  const [value, setValue] = React.useState("");
   const [logs, setLogs] = React.useState<string[]>([]);
 
   const onChange = React.useCallback((val: string, viewUpdate: any) => {
@@ -42,7 +42,7 @@ function CodePage() {
           <CodeMirror
             value={value}
             theme={"dark"}
-            className="md:w-[60vw]"
+            className="md:w-[70vw]"
             extensions={[javascript({ jsx: true })]}
             onChange={onChange}
           />

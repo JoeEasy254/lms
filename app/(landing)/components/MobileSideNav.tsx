@@ -37,19 +37,6 @@ export function MobileSideNav({ routes }: RoutesProps) {
                 </li>
               </>
             ))}
-            <li className="flex items-center gap-x-2 ">
-              <ClerkLoading>
-                <Loader className="w-5 h-5 animate-spin mr-2" />
-              </ClerkLoading>
-
-              <ClerkLoaded>
-                <UserButton />
-              </ClerkLoaded>
-            </li>
-
-            <li>
-              <ModeToggle />
-            </li>
           </ul>
         </SheetContent>
       </Sheet>

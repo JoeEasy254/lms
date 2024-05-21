@@ -182,42 +182,53 @@ export default function Tests() {
 
   return (
     <>
-      <div className="flex gap-x-[50px] mt-4  items-center justify-center ">
-        {categories?.map((category) => {
-          return (
-            <div key={String(category)}>
-              <Button disabled={load} onClick={() => filterCategory(category)}>
-                {load ? <LoaderCircle className="animate-spin h-3 w-3" /> : ""}{" "}
-                {String(category)}
-              </Button>
-            </div>
-          );
-        })}
-      </div>
+      <div className="md:flex justify-around">
+        <div className="flex items-center  md:flex-col gap-y-[20px] mt-4 overflow-auto">
+          {categories?.map((category) => {
+            return (
+              <div key={String(category)}>
+                <Button
+                  variant={"outline"}
+                  className="w-[20vw]"
+                  disabled={load}
+                  onClick={() => filterCategory(category)}
+                >
+                  {load ? (
+                    <LoaderCircle className="animate-spin h-3 w-3" />
+                  ) : (
+                    ""
+                  )}{" "}
+                  {String(category)}
+                </Button>
+              </div>
+            );
+          })}
+        </div>
 
-      <div className="flex flex-col h-screen items-center mt-[15px] ">
-        {current === quizzes.length - 1 && <h1>Its Over</h1>}
-        {/* <Confetti
+        <div className="flex flex-col h-screen items-center mt-[15px] ">
+          {current === quizzes.length - 1 && <h1>Its Over</h1>}
+          {/* <Confetti
           numberOfPieces={1100}
           run={celebrate}
           width={900}
           height={900}
   
         /> */}
-        {questions.map((quiz, index) => {
-          if (index === current) {
-            return (
-              <SingleTest
-                current={current}
-                length={questions.length - 1}
-                quiz={quiz}
-                key={index}
-                handleNext={handleNext}
-                setScore={handleScore}
-              />
-            );
-          }
-        })}
+          {questions.map((quiz, index) => {
+            if (index === current) {
+              return (
+                <SingleTest
+                  current={current}
+                  length={questions.length - 1}
+                  quiz={quiz}
+                  key={index}
+                  handleNext={handleNext}
+                  setScore={handleScore}
+                />
+              );
+            }
+          })}
+        </div>
       </div>
     </>
   );
