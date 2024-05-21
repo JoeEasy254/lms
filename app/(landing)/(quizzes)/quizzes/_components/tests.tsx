@@ -158,8 +158,11 @@ export default function Tests() {
     setScore(score);
   };
 
+  console.log("rendering");
+
   const filterCategory = (category: string | unknown) => {
     setLoad(true);
+    setScore(0);
     setTimeout(() => {
       console.log("somehow I have to wait!!");
       setLoad(false);
@@ -206,14 +209,6 @@ export default function Tests() {
         </div>
 
         <div className="flex flex-col h-screen items-center mt-[15px] ">
-          {current === quizzes.length - 1 && <h1>Its Over</h1>}
-          {/* <Confetti
-          numberOfPieces={1100}
-          run={celebrate}
-          width={900}
-          height={900}
-  
-        /> */}
           {questions.map((quiz, index) => {
             if (index === current) {
               return (
