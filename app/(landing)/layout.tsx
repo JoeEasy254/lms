@@ -88,7 +88,7 @@ export default function HomeLayout({
                     <li>
                       <Link
                         className="hover:border-b-2 border-[#ddd]"
-                        href={"#"}
+                        href={"/blog"}
                       >
                         Blog
                       </Link>
