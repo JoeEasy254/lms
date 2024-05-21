@@ -73,7 +73,7 @@ export default function HomeLayout({
               <MobileSideNav routes={routes} />
             </div>
           </div>
-          <div className=" container mt-[50px]  border-t-2">
+          <div className="mt-[50px]  border-t-2">
             <Toaster />
             {children}
           </div>
