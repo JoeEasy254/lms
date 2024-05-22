@@ -21,6 +21,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   rooms Room[]
+  Posts Posts[]
 }
 
 model Room {
@@ -36,4 +37,14 @@ model Room {
   userId       String
 
   @@index([userId])
+}
+
+model Posts {
+  id        String   @id @default(uuid())
+  content   String
+  title     String
+  author    User     @relation(fields: [userId], references: [userId])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
 }

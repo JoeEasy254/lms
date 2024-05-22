@@ -186,7 +186,7 @@ export default function Tests() {
   return (
     <>
       <div className="md:flex justify-around">
-        <div className="flex items-center  md:flex-col gap-y-[20px] mt-4 overflow-auto">
+        <div className="flex items-center space-x-2 md:space-x-0  md:flex-col gap-y-[20px] mt-4 overflow-auto">
           {categories?.map((category) => {
             return (
               <div key={String(category)}>

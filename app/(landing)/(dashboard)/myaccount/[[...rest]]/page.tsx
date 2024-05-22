@@ -2,7 +2,7 @@ import { UserProfile } from "@clerk/nextjs";
 
 export default function Account() {
   return (
-    <div className="m-2">
+    <div className="">
       <UserProfile />
     </div>
   );

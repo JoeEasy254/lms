@@ -37,12 +37,12 @@ function CodePage() {
 
   return (
     <>
-      <div className="flex flex-col  space-x-4 justify-around">
-        <div>
+      <div >
+        <div className="w-full m-2">
           <CodeMirror
             value={value}
             theme={"dark"}
-            className="md:w-[70vw]"
+            className="w-full m-2"
             extensions={[javascript({ jsx: true })]}
             onChange={onChange}
           />
