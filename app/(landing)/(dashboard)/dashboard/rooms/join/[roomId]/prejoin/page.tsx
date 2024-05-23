@@ -24,7 +24,7 @@ export default function BeforeJoining({
 
   const router = useRouter();
   async function JoinToRoom(values: LocalUserChoices) {
-    router.push(`/rooms/join/${data.roomName}/meet`);
+    router.push(`/dashboard/rooms/join/${data.roomName}/meet`);
   }
 
   return (
