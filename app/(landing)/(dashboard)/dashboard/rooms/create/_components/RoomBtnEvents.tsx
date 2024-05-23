@@ -8,17 +8,15 @@ export default function RoomBtnEvents() {
     return router.push("/rooms");
   }
 
-  
   function createRoom() {
-    return router.push("/rooms/create");
+    return router.push("/dashboard/rooms/create");
   }
 
-  
   return (
     <div className=" flex mx-4 my-4">
       <div className="flex space-x-4">
         <Button onClick={createRoom}>Create a room </Button>
-{/* 
+        {/* 
         <Button onClick={JoinRoom}>Join a room</Button> */}
       </div>
     </div>

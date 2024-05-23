@@ -22,8 +22,8 @@ import {
 import { Toaster } from "@/components/ui/toaster";
 import { ModeToggle } from "@/components/ModeToggle";
 import Link from "next/link";
-import SideNav from "../../components/SideNav";
-import { MobileSideNav } from "../../components/MobileSideNav";
+import SideNav from "../../../../components/dashboardComponents/SideNav";
+import { MobileSideNav } from "../../../../components/dashboardComponents/MobileSideNav";
 
 export default function HomeLayout({
   children,
