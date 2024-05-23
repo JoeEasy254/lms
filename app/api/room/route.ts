@@ -1,7 +1,7 @@
 import { db } from "@/utils/db"
 import { auth, currentUser } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
-
+import { NextRequest as req } from 'next/server'
 
 export async function POST(request: Request) {
     try {
@@ -62,6 +62,25 @@ export async function DELETE(request: Request) {
         }
 
         return new NextResponse("Unauthorized", { status: 401 })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export async function GET(request: req) {
+    const roomId = request.nextUrl.searchParams.get("roomId")
+    try {
+        const room = await db.room.findFirst({
+            where: {
+                id: String(roomId),
+            },
+            include: {
+                participants: true,
+            },
+        });
+
+        return NextResponse.json(room)
     } catch (error) {
         console.log(error)
     }

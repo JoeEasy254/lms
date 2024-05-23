@@ -8,7 +8,8 @@ import { Trash } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { db } from "@/utils/db";
+
+import { CheckIfEnrolled } from "./action";
 interface RoomProps {
   id: string;
   name: string;
@@ -27,15 +28,15 @@ export default function Room({ room }: { room: RoomProps }) {
   const auth = useAuth();
 
   const JoinRoom = () => {
-    (async () => {
-      try {
-        const info = await axios.post("/api/room/join", { roomId: room.id });
+    // (async () => {
+    //   try {
+    //     const info = await axios.post("/api/room/join", { roomId: room.id });
 
-        await fetch(`/api/get-participant-token?room=${room.id}`);
-      } catch (e) {
-        console.error(e);
-      }
-    })();
+    //     await fetch(`/api/get-participant-token?room=${room.id}`);
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
+    // })();
     return router.push(`rooms/join/${room.id}/prejoin`);
   };
 
@@ -64,32 +65,8 @@ export default function Room({ room }: { room: RoomProps }) {
     }
   };
 
-  async function checkIfEnrolled(): Promise<JSX.Element> {
-    const foundRoom = await db.room.findFirst({
-      where: {
-        id: room.id,
-      },
-      include: {
-        participants: true,
-      },
-    });
-    const userInRoom = foundRoom?.participants.some(
-      (participant) => participant.userId === auth.userId
-    );
-
-    if (userInRoom) {
-      return (
-        <Button className="w-full" onClick={JoinRoom} size="sm">
-          Join Room
-        </Button>
-      );
-    } else {
-      return (
-        <Button className="w-full" onClick={() => {}} size="sm">
-          enroll
-        </Button>
-      );
-    }
+  function enrollCourse() {
+    return router.push(`/dashboad/rooms/${room.id}/enroll`);
   }
 
   return (
@@ -132,7 +109,11 @@ export default function Room({ room }: { room: RoomProps }) {
         </div>
         <div className="flex items-center  justify-between">
           {/* here show join or enroll btns */}
-          {checkIfEnrolled()}
+          <CheckIfEnrolled
+            room={room}
+            joinRoom={JoinRoom}
+            enrollCourse={enrollCourse}
+          />
           {auth.userId == room.userId && (
             <Button variant={"ghost"} onClick={removeRoom} size="sm">
               <Trash /> Remove
