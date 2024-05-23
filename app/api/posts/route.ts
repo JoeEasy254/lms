@@ -45,6 +45,8 @@ export async function GET(request: req) {
         const skip = request.nextUrl.searchParams.get("skip") || 1
         const take = request.nextUrl.searchParams.get("take") || 2
 
+
+        const allPosts = (await db.posts.findMany()).length
         const results: any = await db.posts.findMany({
             skip: Number(skip),
             take: Number(take),
@@ -55,7 +57,10 @@ export async function GET(request: req) {
 
 
 
-        return NextResponse.json(results)
+        return NextResponse.json({
+            results,
+            length: allPosts
+        })
     } catch (error) {
         console.log(error)
     }

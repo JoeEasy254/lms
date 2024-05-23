@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 
 export default function Blogpage() {
   const [posts, setPosts] = useState<Posts[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [postSize, setPostSize] = useState<number>(0);
   const router = useRouter();
   const postsPerPage = 2;
   const batchSize = 2;
@@ -23,16 +23,17 @@ export default function Blogpage() {
 
   const fetchInitialPosts = async () => {
     const res = await axios.get(`/api/posts?skip=0&take=${batchSize}`);
-    console.log("res", res.data);
-    setPosts(res.data);
+
+    setPostSize(res.data.length);
+    setPosts(res.data.results);
   };
 
   const fetchMoreRecords = async (currentRecordsCount: number) => {
     const res = await axios.get(
       `/api/posts?skip=${currentRecordsCount}&take=${batchSize}`
     );
-
-    setPosts((prevPosts) => [...prevPosts, ...res.data]);
+    // set post size
+    setPosts((prevPosts) => [...prevPosts, ...res.data.results]);
   };
 
   const handleNext = async () => {
@@ -70,7 +71,11 @@ export default function Blogpage() {
                 </div>
 
                 <div className="my-2 flex justify-center items-center">
-                  <Pagination handleNext={handleNext} />
+                  <Pagination
+                    length={posts.length}
+                    postSize={postSize}
+                    handleNext={handleNext}
+                  />
                 </div>
               </div>
             </div>
