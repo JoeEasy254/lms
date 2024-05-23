@@ -24,8 +24,10 @@ import { ModeToggle } from "@/components/ModeToggle";
 import Link from "next/link";
 import SideNav from "../../../../components/dashboardComponents/SideNav";
 import { MobileSideNav } from "../../../../components/dashboardComponents/MobileSideNav";
+import { auth, currentUser } from "@clerk/nextjs/server";
+import { db } from "@/utils/db";
 
-export default function HomeLayout({
+export default async function HomeLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -68,7 +70,28 @@ export default function HomeLayout({
       icon: <BookOpen />,
     },
   ];
+  const { userId } = auth();
+
+  const userExists = await db.user.findUnique({
+    where: {
+      userId: String(userId),
+    },
+  });
+  const currentUserInSession = await currentUser();
+  if (!userExists) {
+    // create the user
+    await db.user.create({
+      data: {
+        userId: String(userId),
+        username:
+          String(currentUserInSession?.firstName) ||
+          String(currentUserInSession?.lastName) ||
+          String(currentUserInSession?.username),
+      },
+    });
+  }
   return (
+    // clerk userId
     <>
       <div className="container" suppressHydrationWarning>
         <div className="flex justify-between">
@@ -96,7 +119,7 @@ export default function HomeLayout({
                     <li className="hidden md:block">
                       <Link
                         className="hover:border-b-2 border-[#ddd]"
-                        href={"/blog"}
+                        href={"/dashboard/blog"}
                       >
                         Blog
                       </Link>
