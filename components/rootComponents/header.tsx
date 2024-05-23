@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { SignUpButton } from "@clerk/nextjs";
+import { SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import React from "react";
 
@@ -26,9 +26,14 @@ export default function Header() {
         </nav>
       </div>
       <div className="flex items-center gap-4">
-        <Link className="hover:text-gray-400" href="#">
-          <SignUpButton mode="modal" />
-        </Link>
+        <SignedOut>
+          <Link className="hover:text-gray-400" href="#">
+            <SignUpButton mode="modal" />
+          </Link>
+        </SignedOut>
+        <SignedIn>
+          <Link href="/dashboard">Dashboard</Link>
+        </SignedIn>
         <Button>Start Free Trial</Button>
       </div>
     </header>
