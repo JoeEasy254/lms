@@ -37,7 +37,7 @@ export default async function ArticlePage({
             </div>
           </div>
           <div
-            className="p-6"
+            className="w-[100%] h-[80vh] overflow-auto text-xl"
             dangerouslySetInnerHTML={{ __html: String(article?.content) }}
           ></div>
         </article>

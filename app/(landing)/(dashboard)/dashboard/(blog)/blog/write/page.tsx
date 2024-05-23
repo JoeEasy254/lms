@@ -98,8 +98,6 @@ export default function WriteArticle() {
           </div>
         </>
       )}
-
-      <div dangerouslySetInnerHTML={{ __html: value }}></div>
     </>
   );
 }

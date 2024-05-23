@@ -41,7 +41,7 @@ export default function Blogpage() {
   return (
     <>
       <main className=" relative md:mx-3">
-        <Link href={"/blog/write"}>
+        <Link href={"/dashboard/blog/write"}>
           <Button variant="outline" className="mx-2 my-3 absolute right-4">
             <Edit />
             Write

@@ -96,7 +96,7 @@ export default async function HomeLayout({
       <div className="container" suppressHydrationWarning>
         <div className="flex justify-between">
           <div>
-            <div className="md:block hidden border-r-2">
+            <div className="md:block hidden ">
               <SideNav routes={routes} />
             </div>
 
@@ -104,7 +104,7 @@ export default async function HomeLayout({
               <MobileSideNav routes={routes} />
             </div>
           </div>
-          <div className="mt-[50px] w-full  border-t-2">
+          <div className="mt-[50px] w-full  my-3">
             <Toaster />
             {children}
           </div>

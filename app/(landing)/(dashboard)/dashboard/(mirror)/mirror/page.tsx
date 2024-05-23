@@ -37,7 +37,7 @@ function CodePage() {
 
   return (
     <>
-      <div className="w-full">
+      <div >
         <div className="m-2">
           <CodeMirror
             value={value}
