@@ -30,7 +30,7 @@ export default function Article({ post }: { post: Posts }) {
           )}
           <Link
             className="mt-4 inline-flex items-center "
-            href={`/blog/article/${post.id}`}
+            href={`/dashboard/blog/article/${post.id}`}
           >
             Read More
             <ArrowRightIcon className="ml-2 h-4 w-4" />
