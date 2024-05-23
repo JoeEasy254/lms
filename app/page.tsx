@@ -3,21 +3,12 @@
  * @see https://v0.dev/t/e5LdL0HnFaY
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
-import {
-  CardContent,
-  Card,
-  CardTitle,
-  CardDescription,
-  CardHeader,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import Header from "./_components/header";
-import Mainsection from "./_components/main-section";
-import Course from "./_components/Course";
-import PricingCard from "./_components/pricing-card";
+
+import Header from "@/components/rootComponents/header";
+import Mainsection from "@/components/rootComponents/main-section";
+import Course from "@/components/rootComponents/Course";
+import PricingCard from "@/components/rootComponents/pricing-card";
+
 import { ClipboardIcon, PlayIcon, TrophyIcon } from "lucide-react";
 
 export default function Home() {
