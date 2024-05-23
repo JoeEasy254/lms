@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Edit, Edit2 } from "lucide-react";
+import { Edit } from "lucide-react";
 import Article from "./_components/article";
 import Category from "./_components/category";
 import Link from "next/link";
@@ -9,13 +9,11 @@ import Pagination from "./_components/pagination";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Posts } from "@prisma/client";
-import { useRouter } from "next/navigation";
 
 export default function Blogpage() {
   const [posts, setPosts] = useState<Posts[]>([]);
   const [postSize, setPostSize] = useState<number>(0);
-  const router = useRouter();
-  const postsPerPage = 2;
+
   const batchSize = 2;
   useEffect(() => {
     fetchInitialPosts();
@@ -39,10 +37,6 @@ export default function Blogpage() {
   const handleNext = async () => {
     await fetchMoreRecords(posts.length);
   };
-
-  // const handlePrevious = () => {
-  //   setCurrentPage((prevPage) => prevPage - 1);
-  // };
 
   return (
     <>

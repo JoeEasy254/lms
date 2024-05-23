@@ -1,10 +1,11 @@
 import { db } from "@/utils/db";
 
 import { auth } from "@clerk/nextjs/server";
-import RoomBtnEvents from "./(dashboard)/dashboard/rooms/create/_components/RoomBtnEvents";
-import Room from "./(dashboard)/dashboard/rooms/_components/room";
+import RoomBtnEvents from "./rooms/create/_components/RoomBtnEvents";
+import Room from "./rooms/_components/room";
 
-export default async function Home() {
+
+export default async function dashboard() {
   const { userId } = auth();
   const rooms = await db.room.findMany({
     where: {
