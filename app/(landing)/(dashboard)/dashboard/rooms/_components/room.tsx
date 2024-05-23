@@ -66,7 +66,7 @@ export default function Room({ room }: { room: RoomProps }) {
   };
 
   function enrollCourse() {
-    return router.push(`/dashboad/rooms/${room.id}/enroll`);
+    return router.push(`/dashboard/rooms/${room.id}/enroll`);
   }
 
   return (
