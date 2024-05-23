@@ -9,12 +9,14 @@ import Pagination from "./_components/pagination";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Posts } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 export default function Blogpage() {
   const [posts, setPosts] = useState<Posts[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 5;
-  const batchSize = 10;
+  const router = useRouter();
+  const postsPerPage = 2;
+  const batchSize = 2;
   useEffect(() => {
     fetchInitialPosts();
   }, []);
@@ -29,26 +31,18 @@ export default function Blogpage() {
     const res = await axios.get(
       `/api/posts?skip=${currentRecordsCount}&take=${batchSize}`
     );
+
     setPosts((prevPosts) => [...prevPosts, ...res.data]);
   };
 
-  const indexOfLastRecord = currentPage * postsPerPage;
-  const indexOfFirstRecord = indexOfLastRecord - postsPerPage;
-  const currentRecords = posts.slice(indexOfFirstRecord, indexOfLastRecord);
-
   const handleNext = async () => {
-    const nextPage = currentPage + 1;
-    if (indexOfLastRecord >= posts.length) {
-      await fetchMoreRecords(posts.length);
-    }
-    setCurrentPage(nextPage);
+    await fetchMoreRecords(posts.length);
   };
 
-  const handlePrevious = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
+  // const handlePrevious = () => {
+  //   setCurrentPage((prevPage) => prevPage - 1);
+  // };
 
-  console.log(currentPage);
   return (
     <>
       <main className="w-full relative md:mx-3">
@@ -68,20 +62,16 @@ export default function Blogpage() {
                 </h2>
                 <Category />
               </div>
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 w-full">
-                {currentRecords.length > 0 &&
-                  posts.map((post, i) => <Article post={post} key={i} />)}
-              </div>
 
-              <div className="my-2 flex justify-center items-center">
-                <Pagination
-                  handleNext={handleNext}
-                  handlePrevious={handlePrevious}
-                  indexOfLastPost={indexOfLastRecord}
-                  postsLength={posts.length}
-                  currentPage={currentPage}
-                  postsPerPage={postsPerPage}
-                />
+              <div className="overflow-auto h-[60vh]">
+                <div className=" overflow-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 w-full">
+                  {posts.length > 0 &&
+                    posts.map((post, i) => <Article post={post} key={i} />)}
+                </div>
+
+                <div className="my-2 flex justify-center items-center">
+                  <Pagination handleNext={handleNext} />
+                </div>
               </div>
             </div>
           </div>
