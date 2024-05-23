@@ -17,10 +17,7 @@ export default async function ArticlePage({
 
   return (
     <>
-      <div
-        suppressHydrationWarning
-        className="container mx-auto px-4 py-12 md:px-6 md:py-16 lg:py-24"
-      >
+      <div suppressHydrationWarning>
         <article className="prose prose-gray max-w-3xl mx-auto dark:prose-invert">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
             {article?.title}

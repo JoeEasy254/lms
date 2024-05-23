@@ -37,8 +37,8 @@ function CodePage() {
 
   return (
     <>
-      <div >
-        <div className="w-full m-2">
+      <div className="w-full">
+        <div className="m-2">
           <CodeMirror
             value={value}
             theme={"dark"}

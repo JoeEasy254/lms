@@ -40,7 +40,7 @@ export default function Blogpage() {
 
   return (
     <>
-      <main className="w-full relative md:mx-3">
+      <main className=" relative md:mx-3">
         <Link href={"/blog/write"}>
           <Button variant="outline" className="mx-2 my-3 absolute right-4">
             <Edit />
@@ -50,7 +50,7 @@ export default function Blogpage() {
 
         <section className="py-12 md:py-16">
           <div>
-            <div className="mb-8 flex flex-col items-center justify-between">
+            <div className="mb-8 flex flex-col md:items-center justify-between">
               <div className="flex justify-between items-center w-full mb-4">
                 <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
                   Recent Posts
@@ -58,8 +58,8 @@ export default function Blogpage() {
                 <Category />
               </div>
 
-              <div className="overflow-auto h-[60vh]">
-                <div className=" overflow-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 w-full">
+              <div className="overflow-auto h-[60vh] ">
+                <div className=" overflow-auto w-full grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 transition-all">
                   {posts.length > 0 &&
                     posts.map((post, i) => <Article post={post} key={i} />)}
                 </div>

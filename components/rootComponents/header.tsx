@@ -1,6 +1,7 @@
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import React from 'react'
+import { Button } from "@/components/ui/button";
+import { SignUpButton } from "@clerk/nextjs";
+import Link from "next/link";
+import React from "react";
 
 export default function Header() {
   return (
@@ -26,7 +27,7 @@ export default function Header() {
       </div>
       <div className="flex items-center gap-4">
         <Link className="hover:text-gray-400" href="#">
-          Login
+          <SignUpButton mode="modal" />
         </Link>
         <Button>Start Free Trial</Button>
       </div>

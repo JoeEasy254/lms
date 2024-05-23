@@ -18,7 +18,7 @@ interface RoutesProps {
 
 export function MobileSideNav({ routes }: RoutesProps) {
   return (
-    <div className="grid grid-cols-2 gap-2 mt-6">
+    <div className="mt-6  ml-0">
       <Sheet key={"left"}>
         <SheetTrigger asChild>
           <Menu className="w-5 h-5 ml-4" />
@@ -34,8 +34,6 @@ export function MobileSideNav({ routes }: RoutesProps) {
                   >
                     {route.icon} {route.name}
                   </Link>
-
-                  
                 </li>
               </>
             ))}
