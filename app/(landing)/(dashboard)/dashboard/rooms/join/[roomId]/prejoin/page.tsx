@@ -1,11 +1,6 @@
 "use client";
 import LiveKitConfig from "@/app/livekit";
-import {
-  LocalUserChoices,
-  PreJoin,
-  RoomName,
-  useRoomInfo,
-} from "@livekit/components-react";
+import { LocalUserChoices, PreJoin } from "@livekit/components-react";
 import { useRouter } from "next/navigation";
 
 interface Data {
@@ -23,7 +18,7 @@ export default function BeforeJoining({
   };
 
   const router = useRouter();
-  async function JoinToRoom(values: LocalUserChoices) {
+  async function JoinToRoom() {
     router.push(`/dashboard/rooms/join/${data.roomName}/meet`);
   }
 

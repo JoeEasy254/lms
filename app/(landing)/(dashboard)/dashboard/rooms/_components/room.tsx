@@ -8,6 +8,7 @@ import { Trash } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { db } from "@/utils/db";
 interface RoomProps {
   id: string;
   name: string;
@@ -63,6 +64,34 @@ export default function Room({ room }: { room: RoomProps }) {
     }
   };
 
+  async function checkIfEnrolled(): Promise<JSX.Element> {
+    const foundRoom = await db.room.findFirst({
+      where: {
+        id: room.id,
+      },
+      include: {
+        participants: true,
+      },
+    });
+    const userInRoom = foundRoom?.participants.some(
+      (participant) => participant.userId === auth.userId
+    );
+
+    if (userInRoom) {
+      return (
+        <Button className="w-full" onClick={JoinRoom} size="sm">
+          Join Room
+        </Button>
+      );
+    } else {
+      return (
+        <Button className="w-full" onClick={() => {}} size="sm">
+          enroll
+        </Button>
+      );
+    }
+  }
+
   return (
     <div className="md:w-[400px] bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-sm">
       <Image
@@ -102,9 +131,8 @@ export default function Room({ room }: { room: RoomProps }) {
           <span>{Array.from(room.participants).length} participants</span>
         </div>
         <div className="flex items-center  justify-between">
-          <Button className="w-full" onClick={JoinRoom} size="sm">
-            Join Room
-          </Button>
+          {/* here show join or enroll btns */}
+          {checkIfEnrolled()}
           {auth.userId == room.userId && (
             <Button variant={"ghost"} onClick={removeRoom} size="sm">
               <Trash /> Remove
