@@ -39,9 +39,9 @@ export default function PricingCard({
             <span className="text-xl font-semibold">/{pricing.duration}</span>
           </div>
           <ul className="space-y-2 my-8">
-            {pricing.access.map((option) => (
-              <li className="flex items-center">
-                <CheckIcon className="w-5 h-5 mr-2 text-primary" />
+            {pricing.access.map((option,index) => (
+              <li key={index} className="flex items-center">
+                <CheckIcon  className="w-5 h-5 mr-2 text-primary" />
                 {option}
               </li>
             ))}
