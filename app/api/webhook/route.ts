@@ -11,71 +11,66 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
 
 export async function POST(request: req) {
-    // console.log("executed atleast")
-    // const { userId } = auth()
-    // // check if there is  a user from clerk in session
-    // // const sessionUser = await db.user.findUnique({
-    // //     where: {
-    // //         userId: userId as string
-    // //     }
-    // // })
-    // const body = await request.text()
 
-    // const endPointSecret = process.env.STRIPE_SECRET_WEBHOOK_KEY!
+    const { userId } = auth()
+    // check if there is  a user from clerk in session
+    // const sessionUser = await db.user.findUnique({
+    //     where: {
+    //         userId: userId as string
+    //     }
+    // })
+    const body = await request.text()
 
-    // const sig = headers().get('stripe-signature') as string
+    const endPointSecret = process.env.STRIPE_SECRET_WEBHOOK_KEY!
 
-    // let event: Stripe.Event
-    // try {
-    //     event = stripe.webhooks.constructEvent(body, sig, endPointSecret)
+    const sig = headers().get('stripe-signature') as string
 
-    // } catch (error) {
+    let event: Stripe.Event
+    try {
+        event = stripe.webhooks.constructEvent(body, sig, endPointSecret)
 
-    //     console.log(error)
-    //     return new Response(`webhook error ${error}`, { status: 400 })
-    // }
+    } catch (error) {
 
-    // const eventType = event.type;
-    // if (eventType !== 'checkout.session.completed' && eventType !== 'checkout.session.async_payment_succeeded') {
-    //     return new Response('Server Error', {
-    //         status: 500
-    //     })
-    // }
+        console.log(error)
+        return new Response(`webhook error ${error}`, { status: 400 })
+    }
 
-    // const data = event.data.object
-    // const metadata = data.metadata
-    // const price = data.metadata?.price
-    // const name = data.metadata?.name
-    // const created = data.created
-    // const currency = data.currency
-    // const customerDetails = data.customer_details
-    // const amount = data.amount_total
+    const eventType = event.type;
+    if (eventType !== 'checkout.session.completed' && eventType !== 'checkout.session.async_payment_succeeded') {
+        return new Response('Server Error', {
+            status: 500
+        })
+    }
 
-    // const transactionDetails = {
-    //     userId,
-    //     price,
-    //     created,
-    //     currency,
-    //     customerDetails,
-    //     amount
-    // }
+    const data = event.data.object
+    const metadata = data.metadata
+    const price = data.metadata?.price
+    const name = data.metadata?.name
+    const created = data.created
+    const currency = data.currency
+    const customerDetails = data.customer_details
+    const amount = data.amount_total
 
-    // try {
+    const transactionDetails = {
+        userId,
+        price,
+        created,
+        currency,
+        customerDetails,
+        amount
+    }
 
-    //     console.log(transactionDetails)
-    //     return new NextResponse("subscription added", {
-    //         status: 200
-    //     })
-    // } catch (error) {
-    //     console.log(error)
+    try {
 
-    //     return new NextResponse("server error", { status: 500 })
-    // }
+        console.log(transactionDetails)
+        return new NextResponse("subscription added", {
+            status: 200
+        })
+    } catch (error) {
+        console.log(error)
 
+        return new NextResponse("server error", { status: 500 })
+    }
 
-
-
-    // console.log(metadata)
-    return new NextResponse("okay", { status: 200 })
 
 }
