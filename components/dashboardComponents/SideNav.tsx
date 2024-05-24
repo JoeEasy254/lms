@@ -13,6 +13,7 @@ export default function SideNav({ routes }: RoutesProps) {
     <div>
       <div className="md:block hidden min-h-screen  w-[250px] mt-0 pt-0">
         <ul className="relative flex flex-col space-y-[20px] mx-4 my-4">
+          <li className="text-xl">Pamoja Learn</li>
           {routes.map((route) => (
             <>
               <li>

@@ -25,6 +25,7 @@ export function MobileSideNav({ routes }: RoutesProps) {
         </SheetTrigger>
         <SheetContent side={"left"}>
           <ul className="relative flex flex-col space-y-[20px] mx-4 my-4">
+            <li className="text-xl">Pamoja Learn</li>
             {routes.map((route) => (
               <>
                 <li className="flex items-center gap-x-2 ">
