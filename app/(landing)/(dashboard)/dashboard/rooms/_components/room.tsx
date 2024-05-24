@@ -37,7 +37,7 @@ export default function Room({ room }: { room: RoomProps }) {
     //     console.error(e);
     //   }
     // })();
-    return router.push(`rooms/join/${room.id}/prejoin`);
+    return router.push(`/dashboard/rooms/join/${room.id}/prejoin`);
   };
 
   const removeRoom = async () => {

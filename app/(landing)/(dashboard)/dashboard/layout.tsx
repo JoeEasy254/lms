@@ -102,7 +102,7 @@ export default async function HomeLayout({
 
             <div className="md:hidden block ">
               <MobileSideNav routes={routes} />
-            </div>
+            </div> 
           </div>
           <div className="mt-[50px] w-full  my-3">
             <Toaster />
