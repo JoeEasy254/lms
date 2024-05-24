@@ -23,6 +23,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
+    "@stripe/stripe-js": "^3.4.1",
     "@uiw/codemirror-themes": "^4.22.1",
     "@uiw/react-codemirror": "^4.22.1",
     "axios": "^1.6.8",
@@ -43,6 +44,7 @@
     "react-live": "^4.1.6",
     "react-quill": "^2.0.0",
     "react-use": "^17.5.0",
+    "stripe": "^15.8.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.7"
