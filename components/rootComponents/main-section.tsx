@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import React from 'react'
 
 export default function Mainsection() {
@@ -16,7 +17,9 @@ export default function Mainsection() {
               with a free trial.
             </p>
             <div className="flex gap-4">
-              <Button>Start Free Trial</Button>
+              <Link href="https://buy.stripe.com/test_bIY16Z1gK8I1d4keUX">
+                <Button>Start Free Trial</Button>
+              </Link>
               <Button variant="secondary">Explore Courses</Button>
             </div>
           </div>

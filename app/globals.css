@@ -10,6 +10,7 @@ body,
 :root {
   height: 100%;
   margin: 0;
+  box-sizing: border-box;
   /* background-image: url('/bg.png'); */
   background-color: rgb(249 250 251 / var(--tw-bg-opacity)) !important;
   padding: 0;

@@ -34,7 +34,9 @@ export default function Header() {
         <SignedIn>
           <Link href="/dashboard">Dashboard</Link>
         </SignedIn>
-        <Button>Start Free Trial</Button>
+        <Link href="https://buy.stripe.com/test_bIY16Z1gK8I1d4keUX">
+          <Button>Start Free Trial</Button>
+        </Link>
       </div>
     </header>
   );

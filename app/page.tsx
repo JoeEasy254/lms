@@ -12,6 +12,65 @@ import PricingCard from "@/components/rootComponents/pricing-card";
 import { ClipboardIcon, PlayIcon, TrophyIcon } from "lucide-react";
 
 export default function Home() {
+  const pricing: {
+    id: number;
+    plan: string;
+    duration: string;
+    amount: number;
+    description: string;
+    access: string[];
+    stripe_link: string;
+  }[] = [
+    {
+      id: 1,
+      plan: "Basic",
+      amount: 9.0,
+      duration: "monthly",
+      stripe_link: "https://buy.stripe.com/test_bIY16Z1gK8I1d4keUX",
+      description:
+        "Ideal for individual learners looking for comprehensive access to course materials and assessments.",
+      access: [
+        "Access to all courses",
+        "Quizzes and assessments",
+        "Certificate of completion",
+      ],
+    },
+    {
+      id: 2,
+      plan: "Pro",
+      duration: "monthly",
+      amount: 20.0,
+      stripe_link: "https://buy.stripe.com/test_3csg1Te3w5vPc0gbIJ",
+      description:
+        "Perfect for advanced learners and small teams needing additional features and support.",
+      access: [
+        "All features of the Basic plan",
+        "Access to premium courses",
+        "Live webinars and workshops",
+        "Community access",
+        "Offline access to course materials",
+      ],
+    },
+    {
+      id: 3,
+      plan: "Enterprise",
+      amount: 100.0,
+      duration: "custom",
+      stripe_link: "https://buy.stripe.com/test_fZe16Z1gK1fzggwbIK",
+      description:
+        "Tailored for large organizations needing extensive features and personalized support.",
+      access: [
+        "All features of the Pro plan",
+        "Dedicated account manager",
+        "Custom branding",
+        "Advanced analytics and reporting",
+        "Priority support",
+        "Team management tools",
+        "Custom integrations",
+      ],
+    },
+  ];
+
   return (
     <>
       <Header />
@@ -80,10 +139,9 @@ export default function Home() {
             Pricing
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            <PricingCard />
-            <PricingCard />
-            <PricingCard />
-            <PricingCard />
+            {pricing.map((pricing) => (
+              <PricingCard pricing={pricing} />
+            ))}
           </div>
         </div>
       </section>
