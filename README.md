@@ -1,3 +1,6 @@
+#RUN STRIPE-CLI ON LOCAL ENVIRONMENT
+    <i>make sure to have docker installed</i>
+
 <!-- reference -->
 
 https://github.com/stripe/stripe-cli/tree/v1.19.5
