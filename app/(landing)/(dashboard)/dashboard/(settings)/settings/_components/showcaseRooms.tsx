@@ -51,8 +51,8 @@ export default function ShowcaseRooms() {
   return (
     <>
       <div className="flex flex-col gap-y-3">
-        {currentRooms.map((room: any) => (
-          <Room details={room} />
+        {currentRooms.map((room: any,index:number) => (
+          <Room details={room} key={index}/>
         ))}
       </div>
 
