@@ -5,6 +5,17 @@ import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
+
+import TimeAgo from "javascript-time-ago";
+
+// English.
+import en from "javascript-time-ago/locale/en";
+import { Edit, Trash } from "lucide-react";
+
+TimeAgo.addDefaultLocale(en);
+
+// Create formatter (English).
+const timeAgo = new TimeAgo("en-US");
 export default function Post({
   post,
 }: {
@@ -44,19 +55,19 @@ export default function Post({
   };
 
   return (
-    <div className="grid grid-cols-[1fr_auto] gap-4">
+    <div className="flex flex-col ">
       <div className="grid gap-1">
         <div className="text-lg font-medium">{post.title}</div>
         <div className="text-sm text-gray-500 dark:text-gray-400">
-          Published on May 1, 2023
+          Published {timeAgo.format(new Date(post.createdAt))}
         </div>
       </div>
-      <div className="flex items-center gap-2">
-        <Button size="sm" variant="outline">
-          Edit
+      <div className="flex items-center gap-x-2 ">
+        <Button size="sm" variant="default">
+          <Edit />
         </Button>
         <Button onClick={removePost} size="sm" variant="destructive">
-          Delete
+          <Trash />
         </Button>
       </div>
     </div>

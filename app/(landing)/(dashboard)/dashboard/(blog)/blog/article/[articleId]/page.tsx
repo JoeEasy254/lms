@@ -33,7 +33,7 @@ export default async function ArticlePage({
               <div className="font-medium">
                 {auth?.firstName || auth?.lastName}
               </div>
-              <div>Freelance Writer</div>
+              {/* <div>Freelance Writer</div> */}
             </div>
           </div>
           <div

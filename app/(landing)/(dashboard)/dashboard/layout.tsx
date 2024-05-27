@@ -109,7 +109,7 @@ export default async function HomeLayout({
               <SideNav routes={routes} />
             </div>
 
-            <div className="md:hidden block ">
+            <div className="md:hidden block w-[0px]">
               <MobileSideNav routes={routes} />
             </div>
           </div>
@@ -142,7 +142,7 @@ export default async function HomeLayout({
                       </Link>
                     </li>
                   </ul>
-                  <ModeToggle />
+             
                   <UserButton
                     afterMultiSessionSingleSignOutUrl="/"
                     afterSignOutUrl="/"
