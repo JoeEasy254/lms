@@ -1,10 +1,6 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
-
-
 import PaginatePages from "@/components/rootComponents/Paginate";
 import { useEffect, useState } from "react";
 import { Room as RoomType } from "@prisma/client";
@@ -12,7 +8,7 @@ import axios from "axios";
 import ActiveRooms from "./rooms/_components/rooms-active";
 import Room from "./rooms/_components/room";
 
-export default function dashboard() {
+export default function Dashboard() {
   const [rooms, setRooms] = useState<RoomType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);

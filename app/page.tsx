@@ -146,7 +146,7 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
             {courses.map((course) => (
-              <Course course={course} />
+              <Course key={course.title} course={course} />
             ))}
           </div>
         </div>
@@ -208,9 +208,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-        <div>
-          <Footer />
-        </div>
+      <div>
+        <Footer />
+      </div>
       {/* <section className="bg-white dark:bg-gray-900 py-12 md:py-20" /> */}
     </>
   );
