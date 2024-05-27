@@ -150,7 +150,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section>  
       <section className="bg-gray-100 dark:bg-gray-800 py-12 md:py-20">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-gray-900 dark:text-white">
