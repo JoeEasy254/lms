@@ -14,6 +14,7 @@ import {
   LayoutDashboard,
   Loader,
   LogOut,
+  Settings,
   SquareLibrary,
   Trophy,
   UserRoundCog,
@@ -69,6 +70,11 @@ export default async function HomeLayout({
       path: "/dashboard/blog",
       icon: <BookOpen />,
     },
+    {
+      name: "Settings",
+      path: "/dashboard/settings",
+      icon: <Settings />,
+    },
   ];
   const { userId } = auth();
 
@@ -93,7 +99,10 @@ export default async function HomeLayout({
   return (
     // clerk userId
     <>
-      <div className="container" suppressHydrationWarning>
+      <div
+        className="relative container  md:overflow-y-hidden "
+        suppressHydrationWarning
+      >
         <div className="flex justify-between">
           <div>
             <div className="md:block hidden ">
@@ -102,9 +111,9 @@ export default async function HomeLayout({
 
             <div className="md:hidden block ">
               <MobileSideNav routes={routes} />
-            </div> 
+            </div>
           </div>
-          <div className="mt-[50px] w-full  my-3">
+          <div className="mt-[60px] mb-[30px] w-full my-3 ">
             <Toaster />
             {children}
           </div>
@@ -134,13 +143,10 @@ export default async function HomeLayout({
                     </li>
                   </ul>
                   <ModeToggle />
-                  <UserButton />
-
-                  <SignedIn>
-                    <SignOutButton>
-                      <LogOut className="cursor-pointer" />
-                    </SignOutButton>
-                  </SignedIn>
+                  <UserButton
+                    afterMultiSessionSingleSignOutUrl="/"
+                    afterSignOutUrl="/"
+                  />
                 </div>
               </ClerkLoaded>
             </div>

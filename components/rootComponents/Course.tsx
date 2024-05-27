@@ -2,7 +2,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function Course() {
+interface CourseProp {
+  title: string;
+  description: string;
+  thumbnail: string;
+  instructor: {};
+  enrollText: string;
+}
+
+export default function Course({ course }: { course: CourseProp }) {
   return (
     <div>
       <Card>
@@ -10,32 +18,34 @@ export default function Course() {
           alt="Course Thumbnail"
           className="rounded-t-lg"
           height={225}
-          src="https://i.pinimg.com/736x/3d/d4/fd/3dd4fdcd69a2858b06bd01be9ea3c531.jpg"
+          src={course.thumbnail}
           style={{
             aspectRatio: "400/225",
             objectFit: "cover",
           }}
           width={400}
         />
-        <CardContent className="p-4">
+        <CardContent className="h-[250px] p-4 relative w-[100%]">
           <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
-            Introduction to Web Development
+            {course.title}
           </h3>
           <p className="text-gray-700 dark:text-gray-400 mb-4">
-            Learn the fundamentals of web development, including HTML, CSS, and
-            JavaScript.
+            {course.description}
           </p>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between absolute  bottom-3  left-3 right-5">
             <div className="flex items-center gap-2">
               <Avatar>
-                <AvatarImage alt="Instructor" src="/instructor-avatar-1.jpg" />
-                <AvatarFallback>JD</AvatarFallback>
+                <AvatarImage
+                  alt="pamoja learn"
+                  src="/instructor-avatar-1.jpg"
+                />
+                <AvatarFallback>PL</AvatarFallback>
               </Avatar>
               <span className="text-sm text-gray-700 dark:text-gray-400">
-                John Doe
+                Pamoja Learn
               </span>
             </div>
-            <Button size="sm">Enroll</Button>
+            <Button size="sm">{course.enrollText}</Button>
           </div>
         </CardContent>
       </Card>

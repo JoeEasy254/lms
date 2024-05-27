@@ -42,14 +42,12 @@ export async function POST(request: Request) {
 export async function GET(request: req) {
     try {
         // const { skip, take } = await request.json()
-        const skip = request.nextUrl.searchParams.get("skip") || 0
-        const take = request.nextUrl.searchParams.get("take") || 2
 
 
-        const allPosts = (await db.posts.findMany()).length
+
+
         const results: any = await db.posts.findMany({
-            skip: Number(skip),
-            take: Number(take),
+
             orderBy: {
                 title: "asc"
             },
@@ -59,7 +57,6 @@ export async function GET(request: req) {
 
         return NextResponse.json({
             results,
-            length: allPosts
         })
     } catch (error) {
         console.log(error)

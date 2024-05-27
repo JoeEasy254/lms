@@ -37,7 +37,6 @@ export const CheckIfEnrolled = ({
       try {
         const res = await axios.get(`/api/room?roomId=${room.id}`);
 
-        console.log("my res", res);
         setFetchedRoom(res.data);
       } catch (error) {
         console.log(error);

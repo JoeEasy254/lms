@@ -9,34 +9,51 @@ import Pagination from "./_components/pagination";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Posts } from "@prisma/client";
+import PaginatePages from "@/components/rootComponents/Paginate";
 
 export default function Blogpage() {
   const [posts, setPosts] = useState<Posts[]>([]);
-  const [postSize, setPostSize] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
-  const batchSize = 2;
+  const postsPerPage = 3;
+
+  const fetchPosts = async () => {
+    try {
+      const res = await axios.get("/api/posts");
+
+      const totalPosts = res.data.results.length;
+      setTotalPages(Math.ceil(totalPosts / postsPerPage));
+      setPosts(res.data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    fetchInitialPosts();
+    fetchPosts();
   }, []);
 
-  const fetchInitialPosts = async () => {
-    const res = await axios.get(`/api/posts?skip=0&take=${batchSize}`);
-
-    setPostSize(res.data.length);
-    setPosts(res.data.results);
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
-  const fetchMoreRecords = async (currentRecordsCount: number) => {
-    const res = await axios.get(
-      `/api/posts?skip=${currentRecordsCount}&take=${batchSize}`
-    );
-    // set post size
-    setPosts((prevPosts) => [...prevPosts, ...res.data.results]);
+    const handlePageChange = (page: number) => {
+      setCurrentPage(page);
+    };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
-  const handleNext = async () => {
-    await fetchMoreRecords(posts.length);
-  };
+  const currentPosts = posts.slice(
+    (currentPage - 1) * postsPerPage,
+    currentPage * postsPerPage
+  );
 
   return (
     <>
@@ -58,17 +75,21 @@ export default function Blogpage() {
                 <Category />
               </div>
 
-              <div className="overflow-auto h-[60vh] ">
-                <div className=" overflow-auto w-full grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 transition-all">
-                  {posts.length > 0 &&
-                    posts.map((post, i) => <Article post={post} key={i} />)}
+              <div className="overflow-auto  overflow-x-hidden">
+                <div className="mx-2 overflow-auto  grid grid-cols-1 gap-8 transition-all">
+                  {currentPosts.length > 0 &&
+                    currentPosts.map((post, i) => (
+                      <Article post={post} key={i} />
+                    ))}
                 </div>
 
-                <div className="my-2 flex justify-center items-center">
-                  <Pagination
-                    length={posts.length}
-                    postSize={postSize}
+                <div className="flex items-center justify-center mt-4">
+                  <PaginatePages
+                    currentPage={currentPage}
                     handleNext={handleNext}
+                    handlePrevious={handlePrevious}
+                    handlePageChange={handlePageChange}
+                    totalPages={totalPages}
                   />
                 </div>
               </div>

@@ -10,6 +10,7 @@ import Course from "@/components/rootComponents/Course";
 import PricingCard from "@/components/rootComponents/pricing-card";
 
 import { ClipboardIcon, PlayIcon, TrophyIcon } from "lucide-react";
+import Footer from "@/components/rootComponents/footer-home";
 
 export default function Home() {
   const pricing: {
@@ -71,9 +72,72 @@ export default function Home() {
     },
   ];
 
+  const courses: {
+    title: string;
+    description: string;
+    thumbnail: string;
+    instructor: {};
+    enrollText: string;
+  }[] = [
+    {
+      title: "Introduction to Web Development",
+      description:
+        "Learn the fundamentals of web development, including HTML, CSS, and JavaScript.",
+      thumbnail:
+        "https://i.pinimg.com/736x/3d/d4/fd/3dd4fdcd69a2858b06bd01be9ea3c531.jpg",
+      instructor: {
+        name: "John Doe",
+        avatar: "/instructor-avatar-1.jpg",
+        fallback: "JD",
+      },
+      enrollText: "Enroll",
+    },
+    {
+      title: "Data Science with Python",
+      description:
+        "Explore data analysis, visualization, and machine learning with Python.",
+      thumbnail:
+        "https://i.pinimg.com/564x/a4/db/da/a4dbda9524cdf7ebb94329b29668b6d7.jpg",
+      instructor: {
+        name: "Jane Smith",
+        avatar: "/instructor-avatar-2.jpg",
+        fallback: "JS",
+      },
+      enrollText: "Enroll",
+    },
+    {
+      title: "Introduction to Graphic Design",
+      description:
+        "Learn the basics of graphic design, including typography, color theory, and layout.",
+      thumbnail:
+        "https://i.pinimg.com/564x/f2/ca/b5/f2cab505f3498a3566b9e9746c956a42.jpg",
+      instructor: {
+        name: "Emily Johnson",
+        avatar: "/instructor-avatar-3.jpg",
+        fallback: "EJ",
+      },
+      enrollText: "Enroll",
+    },
+    {
+      title: "Financial Management for Beginners",
+      description:
+        "Understand the basics of financial management, including budgeting, investing, and planning.",
+      thumbnail:
+        "https://i.pinimg.com/564x/f2/0b/cb/f20bcb4d5584c2d82874ee5f528a9f3f.jpg",
+      instructor: {
+        name: "Michael Brown",
+        avatar: "/instructor-avatar-4.jpg",
+        fallback: "MB",
+      },
+      enrollText: "Enroll",
+    },
+  ];
+
   return (
     <>
-      <Header />
+      <div>
+        <Header />
+      </div>
       <Mainsection />
       <section className="bg-white dark:bg-gray-900 py-12 md:py-20">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -81,10 +145,9 @@ export default function Home() {
             Featured Courses
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-            <Course />
-            <Course />
-            <Course />
-            <Course />
+            {courses.map((course) => (
+              <Course key={course.title} course={course} />
+            ))}
           </div>
         </div>
       </section>
@@ -145,7 +208,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <div>
+        <Footer />
+      </div>
       {/* <section className="bg-white dark:bg-gray-900 py-12 md:py-20" /> */}
     </>
   );

@@ -19,6 +19,7 @@ export async function POST(request: req) {
     //         userId: userId as string
     //     }
     // })
+
     const body = await request.text()
 
     const endPointSecret = process.env.STRIPE_SECRET_WEBHOOK_KEY!
@@ -69,7 +70,7 @@ export async function POST(request: req) {
     } catch (error) {
         console.log(error)
 
-        return new NextResponse("server error", { status: 500 })
+        // return new NextResponse("server error", { status: 500 })
     }
 
 

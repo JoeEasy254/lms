@@ -26,9 +26,9 @@ export function MobileSideNav({ routes }: RoutesProps) {
         <SheetContent side={"left"}>
           <ul className="relative flex flex-col space-y-[20px] mx-4 my-4">
             <li className="text-xl">Pamoja Learn</li>
-            {routes.map((route) => (
+            {routes.map((route, index: number) => (
               <>
-                <li className="flex items-center gap-x-2 ">
+                <li className="flex items-center gap-x-2 " key={index}>
                   <Link
                     className="flex items-center  gap-x-2 "
                     href={route.path}

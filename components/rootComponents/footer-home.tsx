@@ -1,21 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { HandshakeIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-8 px-4 md:px-6">
+    <footer className="bg-gray-900 text-white py-8 px-4 md:px-6 ">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-        <div className="mb-4 md:mb-0">
-          <Link className="text-2xl font-bold flex items-center" href="#">
-            <MountainIcon className="h-8 w-8 mr-2" />
-            Skillverse
-          </Link>
-          <p className="text-gray-300 text-sm mt-2">
-            © 2024 Skillverse. All rights reserved.
-          </p>
+        <div>
+          <img src="./logo.png" alt="logo" className="w-[120px] rounded-md" />
         </div>
+
         <nav className="flex items-center space-x-6">
           <Link className="hover:text-gray-300 text-lg" href="#">
             About
@@ -51,6 +47,16 @@ export default function Footer() {
             Subscribe
           </Button>
         </form>
+        <div className="mb-4 md:mb-0">
+          <Link className="text-2xl font-bold flex items-center" href="#">
+            {/* <MountainIcon /> */}
+            <HandshakeIcon className="h-8 w-8 mr-2" />
+            Pamoja Learn
+          </Link>
+          <p className="text-gray-300 text-sm mt-2">
+            © 2024 PamojaLearn. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );
