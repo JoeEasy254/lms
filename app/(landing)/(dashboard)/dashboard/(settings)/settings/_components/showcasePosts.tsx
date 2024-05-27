@@ -51,7 +51,7 @@ export default function ShowcasePosts() {
   );
 
   return (
-    <div className="flex flex-col gap-y-3">
+    <div className="md:grid grid-cols-2">
       {currentPosts.length > 0 &&
         currentPosts.map((post, i) => <Post post={post} key={i} />)}
 

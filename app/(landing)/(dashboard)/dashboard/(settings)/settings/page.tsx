@@ -29,8 +29,8 @@ import ShowcasePosts from "./_components/showcasePosts";
 
 export default function SettingsPage() {
   return (
-    <div className="flex flex-col min-h-screen w-full">
-      <main className="md:flex-1 md:grid grid-cols-1 md:grid-cols-3 md:gap-6 md:p-6 md:p-8 lg:p-10">
+    <div className="flex flex-col ">
+      <main className="flex flex-col space-y-3">
         <section className="col-span-1 md:col-span-3">
           <Card>
             <CardHeader>

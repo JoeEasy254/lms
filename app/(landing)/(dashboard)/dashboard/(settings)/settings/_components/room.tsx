@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { Room as RoomType } from "@prisma/client";
 import axios from "axios";
+import { Edit, TrashIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function Room({
@@ -35,19 +36,19 @@ export default function Room({
   };
 
   return (
-    <div className="grid grid-cols-[1fr_auto] gap-4">
+    <div className="flex flex-col ">
       <div className="grid gap-1">
         <div className="text-lg font-medium">{details.name}</div>
         <div className="text-sm text-gray-500 dark:text-gray-400">
           {details.participants.length} participants
         </div>
       </div>
-      <div className="flex items-center gap-2 flex-wrap">
-        <Button onClick={removeRoom} size="sm" variant="outline">
-          Delete Room
+      <div className="flex items-center gap-x-2 ">
+        <Button onClick={removeRoom} size="sm" variant="default">
+          <TrashIcon />
         </Button>
-        <Button size="sm" variant="outline">
-          Edit Room
+        <Button size="sm" variant="destructive">
+          <Edit />
         </Button>
       </div>
     </div>
