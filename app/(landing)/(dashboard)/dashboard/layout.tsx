@@ -113,7 +113,7 @@ export default async function HomeLayout({
               <MobileSideNav routes={routes} />
             </div>
           </div>
-          <div className="mt-[60px] mb-[30px] w-full my-3 h-screen md:overflow-y-auto">
+          <div className="mt-[60px] mb-[30px] w-full my-3 ">
             <Toaster />
             {children}
           </div>
