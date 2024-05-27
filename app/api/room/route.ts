@@ -44,8 +44,8 @@ export async function POST(request: Request) {
     }
 
 }
+
 export async function DELETE(request: Request) {
-    console.log("hello")
     try {
         const { creatorId, roomId } = await request.json()
         const { userId } = auth()

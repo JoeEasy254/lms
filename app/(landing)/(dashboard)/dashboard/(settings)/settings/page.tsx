@@ -23,6 +23,9 @@ import {
 } from "@/components/ui/select";
 import { ModeToggle } from "@/components/ModeToggle";
 import RoomBtnEvents from "../../rooms/create/_components/RoomBtnEvents";
+import Room from "./_components/room";
+import ShowcaseRooms from "./_components/showcaseRooms";
+import ShowcasePosts from "./_components/showcasePosts";
 
 export default function SettingsPage() {
   return (
@@ -37,66 +40,14 @@ export default function SettingsPage() {
               </CardDescription>
               <div className="flex items-center gap-4 mt-4">
                 <RoomBtnEvents />
-                <Button size="sm" variant="outline">
-                  Delete Room
-                </Button>
               </div>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col gap-y-3">
-                <div className="grid grid-cols-[1fr_auto] gap-4">
-                  <div className="grid gap-1">
-                    <div className="text-lg font-medium">Room 1</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      5 participants
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Button size="sm" variant="outline">
-                      Add Participant
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      Remove Participant
-                    </Button>
-                  </div>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] gap-4">
-                  <div className="grid gap-1">
-                    <div className="text-lg font-medium">Room 2</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      3 participants
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Button size="sm" variant="outline">
-                      Add Participant
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      Remove Participant
-                    </Button>
-                  </div>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] gap-4">
-                  <div className="grid gap-1">
-                    <div className="text-lg font-medium">Room 3</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      7 participants
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Button size="sm" variant="outline">
-                      Add Participant
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      Remove Participant
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <ShowcaseRooms />
             </CardContent>
           </Card>
         </section>
-        <section className="col-span-1 md:col-span-2">
+        {/* <section className="col-span-1 md:col-span-2">
           <Card>
             <CardHeader>
               <CardTitle>Notification Settings</CardTitle>
@@ -142,7 +93,7 @@ export default function SettingsPage() {
               </div>
             </CardContent>
           </Card>
-        </section>
+        </section> */}
         <section className="col-span-1 md:col-span-1">
           <Card>
             <CardHeader>
@@ -162,43 +113,6 @@ export default function SettingsPage() {
                   </div>
                   <ModeToggle />
                 </div>
-                <div className="flex flex-col space-y-2 justify-between">
-                  <div>
-                    <div className="text-base font-medium">Font Size</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      Adjust the font size for your account.
-                    </div>
-                  </div>
-                  <Select>
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Font Size" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="small">Small</SelectItem>
-                      <SelectItem value="medium">Medium</SelectItem>
-                      <SelectItem value="large">Large</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex flex-col space-y-2 justify-between">
-                  <div>
-                    <div className="text-base font-medium">Language</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      Choose the language for your account.
-                    </div>
-                  </div>
-                  <Select>
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Language" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="en">English</SelectItem>
-                      <SelectItem value="es">Spanish</SelectItem>
-                      <SelectItem value="fr">French</SelectItem>
-                      <SelectItem value="de">German</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
               </div>
             </CardContent>
           </Card>
@@ -209,68 +123,15 @@ export default function SettingsPage() {
               <CardTitle>Blogs</CardTitle>
               <CardDescription>Manage your blog posts.</CardDescription>
               <div className="flex items-center gap-4 mt-4 flex-wrap">
-                <Button size="sm" variant="outline">
-                  Create Article
-                </Button>
-                <Button size="sm" variant="outline">
-                  Edit Article
-                </Button>
-                <Button size="sm" variant="outline">
-                  Delete Article
-                </Button>
+                <Link href="/dashboard/blog/write">
+                  <Button size="sm" variant="outline">
+                    Create Article
+                  </Button>
+                </Link>
               </div>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col gap-y-3">
-                <div className="grid grid-cols-[1fr_auto] gap-4">
-                  <div className="grid gap-1">
-                    <div className="text-lg font-medium">Blog Post 1</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      Published on May 1, 2023
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button size="sm" variant="outline">
-                      Edit
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      Delete
-                    </Button>
-                  </div>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] gap-4">
-                  <div className="grid gap-1">
-                    <div className="text-lg font-medium">Blog Post 2</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      Published on April 15, 2023
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button size="sm" variant="outline">
-                      Edit
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      Delete
-                    </Button>
-                  </div>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] gap-4">
-                  <div className="grid gap-1">
-                    <div className="text-lg font-medium">Blog Post 3</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      Published on March 30, 2023
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button size="sm" variant="outline">
-                      Edit
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      Delete
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <ShowcasePosts />
             </CardContent>
           </Card>
         </section>

@@ -12,7 +12,7 @@ export async function GET(request: Req) {
     try {
         const { userId } = auth()
         if (myrooms) {
-            const myrooms: any = await db.room.findMany({
+            const myrooms= await db.room.findMany({
                 where: {
                     userId: String(userId)
                 },
@@ -23,7 +23,7 @@ export async function GET(request: Req) {
                     participants: true,
                 },
             });
-            console.log("my rooms")
+       
             return NextResponse.json(myrooms)
         }
         const rooms: any = await db.room.findMany({
