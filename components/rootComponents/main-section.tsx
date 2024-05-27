@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function Mainsection() {
   return (
-    <main className="bg-gray-100 dark:bg-gray-800 py-12 md:py-20">
+    <main className="bg-gray-100 dark:bg-gray-800 py-12 md:py-20 ">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <div className="flex flex-col justify-center">

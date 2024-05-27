@@ -21,6 +21,9 @@ export default function RootLayout({
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
     >
       <html lang="en">
+        <head>
+      <link rel="shortcut icon" href="./logo.png" type="image/x-icon" />
+        </head>
         <body className={inter.className}>
           <ThemeProvider
             attribute="class"

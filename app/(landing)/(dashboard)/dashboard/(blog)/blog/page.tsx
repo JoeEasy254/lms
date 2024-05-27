@@ -58,8 +58,8 @@ export default function Blogpage() {
                 <Category />
               </div>
 
-              <div className="overflow-auto h-[60vh] ">
-                <div className=" overflow-auto w-full grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 transition-all">
+              <div className="overflow-auto  overflow-x-hidden">
+                <div className="mx-2 overflow-auto  grid grid-cols-1 gap-8 transition-all">
                   {posts.length > 0 &&
                     posts.map((post, i) => <Article post={post} key={i} />)}
                 </div>

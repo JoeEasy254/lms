@@ -2,6 +2,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Room from "./_components/room";
 import { db } from "@/utils/db";
+import ActiveRooms from "./_components/rooms-active";
+import PaginatePages from "@/components/rootComponents/Paginate";
 
 export default async function RoomPage() {
   const rooms = await db.room.findMany({
@@ -17,7 +19,7 @@ export default async function RoomPage() {
     <div className="  py-6  md:px-6">
       <div className="">
         <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row  justify-between mb-6">
-          <h1 className="text-2xl font-bold">Webconferencing Rooms</h1>
+          <h1 className="text-2xl font-bold">Explore Rooms</h1>
           <div className="relative w-full max-w-md">
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400" />
             <Input
@@ -27,10 +29,18 @@ export default async function RoomPage() {
             />
           </div>
         </div>
-        <div className=" flex flex-wrap md:space-x-4 items-center">
+
+        <div>
+          <ActiveRooms />
+        </div>
+        <div className=" flex flex-wrap md:grid grid-cols-3 w-full md:gap-x-4">
           {rooms.map((room: any) => (
             <Room room={room} key={room.id} />
           ))}
+        </div>
+
+        <div className="flex items-center justify-center mt-4">
+          <PaginatePages />
         </div>
       </div>
     </div>

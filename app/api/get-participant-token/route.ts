@@ -54,9 +54,9 @@ export async function GET(req: NextRequest) {
         );
     }
 
-    const at = new AccessToken(apiKey, apiSecret, { identity: String(user.fullName) });
+    const at = new AccessToken(apiKey, apiSecret, { identity: String(user.id), name: String(user.fullName) });
 
-    at.addGrant({ room: r?.name, roomJoin: true, canPublish: true, canSubscribe: true });
+    at.addGrant({ roomAdmin: true, room: r?.name, roomJoin: true, canPublish: true, canSubscribe: true });
 
     return NextResponse.json({ token: await at.toJwt() });
 }

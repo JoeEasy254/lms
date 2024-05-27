@@ -15,8 +15,9 @@ TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo("en-US");
 export default function Article({ post }: { post: Posts }) {
   return (
-    <div>
+    <div className="md:w-[800px]">
       <Card>
+
         <CardContent className="p-4">
           <h3 className="mb-2 text-xl font-bold">{post.title}</h3>
 

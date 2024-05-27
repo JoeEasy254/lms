@@ -17,7 +17,7 @@ export default async function ArticlePage({
 
   return (
     <>
-      <div suppressHydrationWarning className="mt-4 ">
+      <div suppressHydrationWarning className="h-screen overflow-auto ">
         <article className="prose prose-gray max-w-3xl mx-auto dark:prose-invert">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
             {article?.title}
@@ -37,7 +37,7 @@ export default async function ArticlePage({
             </div>
           </div>
           <div
-            className="max-w-screen text-xl leading-relaxed"
+            className="max-w-screen text-xl"
             dangerouslySetInnerHTML={{ __html: String(article?.content) }}
           ></div>
         </article>
