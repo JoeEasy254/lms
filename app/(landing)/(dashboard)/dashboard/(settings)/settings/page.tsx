@@ -5,7 +5,6 @@
  */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import {
   CardTitle,
   CardDescription,
@@ -13,17 +12,8 @@ import {
   CardContent,
   Card,
 } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
-import {
-  SelectValue,
-  SelectTrigger,
-  SelectItem,
-  SelectContent,
-  Select,
-} from "@/components/ui/select";
 import { ModeToggle } from "@/components/ModeToggle";
 import RoomBtnEvents from "../../rooms/create/_components/RoomBtnEvents";
-import Room from "./_components/room";
 import ShowcaseRooms from "./_components/showcaseRooms";
 import ShowcasePosts from "./_components/showcasePosts";
 
@@ -34,9 +24,9 @@ export default function SettingsPage() {
         <section className="col-span-1 md:col-span-3">
           <Card>
             <CardHeader>
-              <CardTitle>Rooms</CardTitle>
+              <CardTitle>Course</CardTitle>
               <CardDescription>
-                Manage your rooms and participants.
+                Manage your courses and participants.
               </CardDescription>
               <div className="flex items-center gap-4 mt-4">
                 <RoomBtnEvents />

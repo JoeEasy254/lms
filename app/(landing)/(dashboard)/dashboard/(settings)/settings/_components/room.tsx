@@ -4,6 +4,7 @@ import { Room as RoomType } from "@prisma/client";
 import axios from "axios";
 import { Edit, TrashIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import EditDialogName from "./editNameDialog";
 
 export default function Room({
   details,
@@ -28,7 +29,7 @@ export default function Room({
       router.refresh();
       toast({
         title: "Alert",
-        description: "room removed",
+        description: "course removed",
       });
     } catch (error) {
       console.log(error);
@@ -47,9 +48,7 @@ export default function Room({
         <Button onClick={removeRoom} size="sm" variant="default">
           <TrashIcon />
         </Button>
-        <Button size="sm" variant="destructive">
-          <Edit />
-        </Button>
+        <EditDialogName name={details.name} id={details.id} type="course" />
       </div>
     </div>
   );

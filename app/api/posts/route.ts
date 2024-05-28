@@ -89,3 +89,41 @@ export async function DELETE(request: Request) {
 }
 
 
+export async function PUT(request: Request) {
+    const { userId } = auth()
+    const { data, id } = await request.json()
+
+
+    try {
+        const { title } = data
+
+        // check if this user can edit this post
+        const isUserLegit = await db.posts.findFirst({
+            where: {
+                id,
+                userId: userId as string
+            }
+        })
+
+        if (!isUserLegit) {
+            return new Response("Not authorized", {
+                status: 401
+            })
+        }
+
+        const post = await db.posts.update({
+            where: {
+                id: isUserLegit.id
+
+            }, data: {
+                title
+            }
+        })
+
+        return NextResponse.json("article updated")
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+

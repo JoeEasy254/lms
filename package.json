@@ -1,5 +1,6 @@
 {
   "name": "my-app",
+  "type": "commonjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,6 +18,7 @@
     "@livekit/components-react": "^2.2.1",
     "@livekit/components-styles": "^1.0.12",
     "@prisma/client": "^5.13.0",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",

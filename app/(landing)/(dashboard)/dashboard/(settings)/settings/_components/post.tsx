@@ -11,6 +11,7 @@ import TimeAgo from "javascript-time-ago";
 // English.
 import en from "javascript-time-ago/locale/en";
 import { Edit, Trash } from "lucide-react";
+import EditDialogName from "./editNameDialog";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -63,9 +64,12 @@ export default function Post({
         </div>
       </div>
       <div className="flex items-center gap-x-2 ">
-        <Button size="sm" variant="default">
-          <Edit />
-        </Button>
+        <EditDialogName
+          data={post}
+          name={post.title}
+          id={post.id}
+          type="post"
+        />
         <Button onClick={removePost} size="sm" variant="destructive">
           <Trash />
         </Button>

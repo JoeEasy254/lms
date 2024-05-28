@@ -12,7 +12,7 @@ export async function GET(request: Req) {
     try {
         const { userId } = auth()
         if (myrooms) {
-            const myrooms= await db.room.findMany({
+            const myrooms = await db.room.findMany({
                 where: {
                     userId: String(userId)
                 },
@@ -23,7 +23,7 @@ export async function GET(request: Req) {
                     participants: true,
                 },
             });
-       
+
             return NextResponse.json(myrooms)
         }
         const rooms: any = await db.room.findMany({
@@ -40,3 +40,46 @@ export async function GET(request: Req) {
         console.log(error)
     }
 }
+
+
+
+export async function PUT(request: Request) {
+    const { userId } = auth()
+    const { data, id } = await request.json()
+
+
+    console.log("triger", id, data);
+
+    try {
+        const { name } = data
+
+        // check if this user can edit this post
+        const isUserLegit = await db.room.findFirst({
+            where: {
+                id,
+                userId: userId as string
+            }
+        })
+
+        if (!isUserLegit) {
+            return new Response("Not authorized", {
+                status: 401
+            })
+        }
+
+        const post = await db.room.update({
+            where: {
+                id: isUserLegit.id
+
+            }, data: {
+                name
+            }
+        })
+
+        return NextResponse.json("course updated")
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
