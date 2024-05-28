@@ -150,7 +150,7 @@ function EditCourse({ name, id }: { name: string; id: string }) {
   });
 
   const router = useRouter();
-  async function onCourseSubmit(values: z.infer<typeof formSchema>) {
+  async function onCourseSubmit(values: z.infer<typeof formCourseSchema>) {
     try {
       const res = await axios.put("/api/room/rooms", {
         id,
