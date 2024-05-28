@@ -17,7 +17,6 @@ export default function Article({ post }: { post: Posts }) {
   return (
     <div className="md:w-[800px]">
       <Card>
-
         <CardContent className="p-4">
           <h3 className="mb-2 text-xl font-bold">{post.title}</h3>
 
@@ -44,11 +43,10 @@ export default function Article({ post }: { post: Posts }) {
           <div className="flex items-center justify-center gap-4 mb-4">
             <Avatar>
               <AvatarImage alt="Author" src="/placeholder-user.jpg" />
-              <AvatarFallback>JD</AvatarFallback>
+              <AvatarFallback>PL</AvatarFallback>
             </Avatar>
             <div>
-              <div className="font-medium">John Doe</div>
-              <div className="text-sm text-gray-500 ">12 Comments</div>
+              <div className="font-medium">Pamoja Learn</div>
             </div>
           </div>
         </div>

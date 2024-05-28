@@ -1,11 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Edit } from "lucide-react";
 import Article from "./_components/article";
 import Category from "./_components/category";
-import Link from "next/link";
-import Pagination from "./_components/pagination";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Posts } from "@prisma/client";
@@ -40,9 +36,9 @@ export default function Blogpage() {
     }
   };
 
-    const handlePageChange = (page: number) => {
-      setCurrentPage(page);
-    };
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -58,13 +54,6 @@ export default function Blogpage() {
   return (
     <>
       <main className=" relative md:mx-3">
-        <Link href={"/dashboard/blog/write"}>
-          <Button variant="outline" className="mx-2 my-3 absolute right-4">
-            <Edit />
-            Write
-          </Button>
-        </Link>
-
         <section className="py-12 md:py-16">
           <div>
             <div className="mb-8 flex flex-col md:items-center justify-between">
