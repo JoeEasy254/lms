@@ -35,9 +35,9 @@ export const CheckIfEnrolled = ({
   useEffect(() => {
     const getRoom = async () => {
       try {
-        const res = await axios.get(`/api/room?roomId=${room.id}`);
-
-        setFetchedRoom(res.data);
+        const res = await fetch(`/api/room?roomId=${room.id}`);
+        const data = await res.json();
+        setFetchedRoom(data);
       } catch (error) {
         console.log(error);
       }

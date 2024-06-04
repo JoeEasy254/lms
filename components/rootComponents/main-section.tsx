@@ -12,7 +12,7 @@ export default function Mainsection() {
               Learn New Skills, Anytime, Anywhere
             </h1>
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-400 mb-8">
-              Skillverse offers live, interactive classes taught by vetted
+              PamojaLearn offers live, interactive classes taught by vetted
               instructors across a variety of skills and subjects. Get started
               with a free trial.
             </p>

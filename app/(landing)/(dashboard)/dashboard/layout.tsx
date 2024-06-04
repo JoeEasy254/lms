@@ -100,7 +100,7 @@ export default async function HomeLayout({
     // clerk userId
     <>
       <div
-        className="relative container  md:overflow-y-hidden "
+        className="relative container md:max-w-[1400px]  md:overflow-y-hidden "
         suppressHydrationWarning
       >
         <div className="flex justify-between">
@@ -142,11 +142,8 @@ export default async function HomeLayout({
                       </Link>
                     </li>
                   </ul>
-             
-                  <UserButton
-                    afterMultiSessionSingleSignOutUrl="/"
-                    afterSignOutUrl="/"
-                  />
+
+                  <UserButton afterSignOutUrl={`/`} />
                 </div>
               </ClerkLoaded>
             </div>

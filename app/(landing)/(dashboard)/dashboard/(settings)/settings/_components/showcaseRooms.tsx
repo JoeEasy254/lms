@@ -15,10 +15,11 @@ export default function ShowcaseRooms() {
 
   const fetchRooms = async () => {
     try {
-      const res = await axios.get("/api/room/rooms?myrooms=true");
-      const totalRooms = res.data.length;
-      setTotalPages(Math.ceil(totalRooms / roomsPerPage));
-      setRooms(res.data);
+      const res = await fetch("/api/room/rooms?myrooms=true");
+      const totalRooms = await res.json();
+
+      setTotalPages(Math.ceil(totalRooms.length / roomsPerPage));
+      setRooms(totalRooms);
     } catch (error) {
       console.log(error);
     }
@@ -51,8 +52,8 @@ export default function ShowcaseRooms() {
   return (
     <>
       <div className="md:grid grid-cols-2">
-        {currentRooms.map((room: any,index:number) => (
-          <Room details={room} key={index}/>
+        {currentRooms.map((room: any, index: number) => (
+          <Room details={room} key={index} />
         ))}
       </div>
 

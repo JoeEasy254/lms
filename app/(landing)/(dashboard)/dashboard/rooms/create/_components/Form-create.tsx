@@ -46,18 +46,22 @@ export const CreateForm = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // create a user
     try {
-      const room = await axios.post("/api/room", {
-        name: values.name,
-        title: values.title,
-        price: values.price,
-        date,
-        description: values.description,
+     await fetch("/api/room", {
+        method: "post",
+        body: JSON.stringify({
+          name: values.name,
+          title: values.title,
+          price: values.price,
+          date,
+          description: values.description,
+        }),
       });
+
       toast({
         title: "Alert",
         description: "Room created",
       });
-      // router.push(`/rooms/join/${room.data.id}`);
+      router.refresh();
     } catch (error) {
       console.log(error);
       toast({
@@ -144,7 +148,9 @@ export const CreateForm = () => {
               className="rounded-md border"
             />
           </div>
-          <Button disabled={isSubmitting || !isValid} type="submit">Submit</Button>
+          <Button disabled={isSubmitting || !isValid} type="submit">
+            Submit
+          </Button>
         </form>
       </Form>
     </>

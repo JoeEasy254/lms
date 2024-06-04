@@ -16,11 +16,11 @@ export default function Blogpage() {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get("/api/posts");
-
-      const totalPosts = res.data.results.length;
+      const response = await fetch("/api/posts");
+      const { results } = await response.json();
+      const totalPosts = results.length;
       setTotalPages(Math.ceil(totalPosts / postsPerPage));
-      setPosts(res.data.results);
+      setPosts(results);
     } catch (error) {
       console.log(error);
     }

@@ -1,15 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import { PlusCircleIcon, SaveIcon } from "lucide-react";
+import { PlusCircleIcon} from "lucide-react";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import { Quill } from "react-quill";
-import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -44,7 +40,13 @@ export default function WriteArticle() {
 
   const onPublish = async () => {
     try {
-      await axios.post("/api/posts", { content: value, title });
+      await fetch("/api/posts", {
+        method: "post",
+        body: JSON.stringify({
+          content: value,
+          title,
+        })
+      });
 
       toast({
         title: "Alert",

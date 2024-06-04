@@ -1,8 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/Q6VzPRKRf4O
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -37,53 +33,7 @@ export default function SettingsPage() {
             </CardContent>
           </Card>
         </section>
-        {/* <section className="col-span-1 md:col-span-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Notification Settings</CardTitle>
-              <CardDescription>
-                Manage your notification preferences.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-base font-medium">
-                      Email Notifications
-                    </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      Receive email notifications for important updates.
-                    </div>
-                  </div>
-                  <Switch id="email-notifications" />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-base font-medium">
-                      Push Notifications
-                    </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      Receive push notifications for real-time updates.
-                    </div>
-                  </div>
-                  <Switch id="push-notifications" />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-base font-medium">
-                      SMS Notifications
-                    </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      Receive SMS notifications for important updates.
-                    </div>
-                  </div>
-                  <Switch id="sms-notifications" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section> */}
+
         <section className="col-span-1 md:col-span-1">
           <Card>
             <CardHeader>

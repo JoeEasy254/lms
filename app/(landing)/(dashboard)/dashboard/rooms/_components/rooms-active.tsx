@@ -1,7 +1,6 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import axios from "axios";
+import { Button } from "@/components/ui/button";
 import { Room } from "livekit-server-sdk";
 import { Radio } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -12,14 +11,10 @@ export default function ActiveRooms() {
   useEffect(() => {
     async function getActiveRooms() {
       // Send a POST request
-      const res = await axios({
-        method: "get",
-        url: "/api/room/list",
-      });
+      const res = await fetch("/api/room/list");
 
-      console.log(res.data);
-
-      setActiveRooms(res.data);
+      const data = await res.json();
+      setActiveRooms(data);
     }
     getActiveRooms();
   }, []);
@@ -27,10 +22,17 @@ export default function ActiveRooms() {
   console.log(activeRooms.length);
   return (
     <div className={` ${activeRooms.length < 1 && "hidden"}`}>
-      <h1 className="flex items-center space-x-5 ">
-        <Radio className="animate-ping" />{" "}
-        <span className="text-xl">{activeRooms.length}</span>
-      </h1>
+      <Button
+        disabled={true}
+        className="animate-pulse relative inline-flex space-x-2 items-center p-3 text-sm font-medium text-center text-white "
+      >
+        <h1 className="flex space-x-3">
+          <Radio /> <span>live courses</span>
+        </h1>
+        <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+          {activeRooms.length}
+        </div>
+      </Button>
     </div>
   );
 }

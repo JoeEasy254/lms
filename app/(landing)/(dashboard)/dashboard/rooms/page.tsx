@@ -1,28 +1,30 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import Room from "./_components/room";
-import { db } from "@/utils/db";
 import ActiveRooms from "./_components/rooms-active";
 import PaginatePages from "@/components/rootComponents/Paginate";
 import { useEffect, useState } from "react";
-import { Room as RoomType, User } from "@prisma/client";
 import axios from "axios";
+import Loader from "@/components/rootComponents/loading";
 
 export default function RoomPage() {
   const [rooms, setRooms] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const roomsPerPage = 3;
 
   const fetchRooms = async () => {
+    setLoading(true);
     try {
-      const res = await axios.get("/api/room/rooms");
-      const totalRooms = res.data.length;
+      const res = await fetch("/api/room/rooms");
+      const data = await res.json();
+      const totalRooms = data.length;
       setTotalPages(Math.ceil(totalRooms / roomsPerPage));
-      setRooms(res.data);
+      setRooms(data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -53,10 +55,13 @@ export default function RoomPage() {
     currentPage * roomsPerPage
   );
 
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="py-6 md:px-6">
       <div className="">
-        <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row justify-between mb-6">
+        <div className="flex flex-col md:space-y-3 md:flex-col space-y-3 lg:space-y-0 lg:flex-row justify-between mb-6">
           <h1 className="text-2xl font-bold">Explore Courses</h1>
           <div className="relative w-full max-w-md">
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400" />
@@ -71,7 +76,7 @@ export default function RoomPage() {
         <div>
           <ActiveRooms />
         </div>
-        <div className="flex flex-wrap md:grid grid-cols-3 w-full md:gap-x-4">
+        <div className="flex flex-wrap md:grid grid-cols-1 w-full md:gap-x-4 lg:grid-cols-3">
           {currentRooms.map(
             (
               room: {

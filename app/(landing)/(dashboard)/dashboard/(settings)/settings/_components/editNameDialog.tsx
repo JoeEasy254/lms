@@ -95,14 +95,17 @@ function EditPost({
   const router = useRouter();
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const res = await axios.put("/api/posts", {
-        id,
-        data: values,
+      const res = await fetch("/api/posts", {
+        method: "put",
+        body: JSON.stringify({
+          id,
+          data: values,
+        }),
       });
 
       toast({
         title: "Alert",
-        description: res["data"],
+        description: await res.json(),
       });
 
       router.refresh();

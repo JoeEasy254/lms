@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { useAuth } from "@clerk/nextjs";
 import { Room as R, User } from "@prisma/client";
-import axios from "axios";
 import { Trash } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
@@ -47,12 +46,9 @@ export default function Room({ room }: { room: RoomProps }) {
         roomId: room.id,
       };
 
-      await axios({
+      await fetch("/api/room", {
         method: "delete",
-        url: "/api/room",
-        data: {
-          ...obj,
-        },
+        body: JSON.stringify(obj),
       });
       toast({
         title: "Alert",
@@ -70,7 +66,7 @@ export default function Room({ room }: { room: RoomProps }) {
   }
 
   return (
-    <div className=" bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-sm mt-3">
+    <div className="md:w-[400px]  lg:w-auto bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-sm mt-3 ">
       <Image
         alt="Room Thumbnail"
         height={225}

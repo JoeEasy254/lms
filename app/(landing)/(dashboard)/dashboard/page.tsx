@@ -7,20 +7,24 @@ import { Room as RoomType } from "@prisma/client";
 import axios from "axios";
 import ActiveRooms from "./rooms/_components/rooms-active";
 import Room from "./rooms/_components/room";
+import Loader from "@/components/rootComponents/loading";
 
 export default function Dashboard() {
   const [rooms, setRooms] = useState<RoomType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-
+  const [loading, setLoading] = useState(false);
   const roomsPerPage = 3;
 
   const fetchRooms = async () => {
+    setLoading(true);
     try {
-      const res = await axios.get("/api/room/rooms?myrooms=true");
-      const totalRooms = res.data.length;
+      const res = await fetch("/api/room/rooms?myrooms=true");
+      const totalRooms = await res.json();
+
       setTotalPages(Math.ceil(totalRooms / roomsPerPage));
-      setRooms(res.data);
+      setRooms(totalRooms);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -49,6 +53,10 @@ export default function Dashboard() {
     (currentPage - 1) * roomsPerPage,
     currentPage * roomsPerPage
   );
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="py-6 md:px-6">
