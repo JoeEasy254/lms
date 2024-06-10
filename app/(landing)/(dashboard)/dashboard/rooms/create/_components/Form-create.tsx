@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import axios from "axios";
+import { UploadButton } from "@/utils/uploadthing";
 import { Calendar } from "@/components/ui/calendar";
 
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
 import { useState } from "react";
+import { Label } from "@/components/ui/label";
 
 const formSchema = z.object({
   name: z.string().min(2),
@@ -30,6 +31,7 @@ const formSchema = z.object({
 });
 
 export const CreateForm = () => {
+  const [imageUrl, setImageUrl] = useState("");
   const router = useRouter();
   const [date, setDate] = useState<Date | undefined>(new Date());
   const form = useForm<z.infer<typeof formSchema>>({
@@ -52,6 +54,7 @@ export const CreateForm = () => {
           name: values.name,
           title: values.title,
           price: values.price,
+          imageUrl: imageUrl,
           date,
           description: values.description,
         }),
@@ -146,6 +149,27 @@ export const CreateForm = () => {
               selected={date}
               onSelect={setDate}
               className="rounded-md border"
+            />
+          </div>
+
+          <div className="border p-2">
+            <Label className="text-center">Upload course image</Label>
+            <UploadButton
+              endpoint="courseImage"
+              onClientUploadComplete={(res) => {
+                setImageUrl(res[0].url);
+                toast({
+                  title: "Alert",
+                  description: "upload complete",
+                });
+              }}
+              onUploadError={(error: Error) => {
+                // Do something with the error.
+                toast({
+                  title: "Alert",
+                  description: "upload failed",
+                });
+              }}
             />
           </div>
           <Button disabled={!isValid || isSubmitting} type="submit">

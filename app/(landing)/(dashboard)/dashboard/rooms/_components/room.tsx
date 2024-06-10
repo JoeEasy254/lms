@@ -26,10 +26,10 @@ interface RoomProps {
 export default function Room({ room }: { room: RoomProps }) {
   return (
     <div className="md:w-[400px]  lg:w-auto bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-sm mt-3 ">
-      <Image
+      <img
         alt="Room Thumbnail"
         height={225}
-        src="/pic.jpg"
+        src={room?.imageUrl}
         style={{
           aspectRatio: "400/225",
           objectFit: "cover",
