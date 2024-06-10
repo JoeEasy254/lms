@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, CSSProperties } from "react";
 import HashLoader from "react-spinners/HashLoader";
 
 function Loader() {

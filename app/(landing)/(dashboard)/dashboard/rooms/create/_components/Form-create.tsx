@@ -23,9 +23,9 @@ import { toast } from "@/components/ui/use-toast";
 import { useState } from "react";
 
 const formSchema = z.object({
-  name: z.string().min(2).max(50),
-  title: z.string().min(2).max(50),
-  description: z.string().min(5).max(50),
+  name: z.string().min(2),
+  title: z.string().min(2),
+  description: z.string().min(5),
   price: z.coerce.number(),
 });
 
@@ -42,11 +42,11 @@ export const CreateForm = () => {
     },
   });
   const { isSubmitting, isValid } = form.formState;
-
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
     // create a user
     try {
-     await fetch("/api/room", {
+      await fetch("/api/room", {
         method: "post",
         body: JSON.stringify({
           name: values.name,
@@ -148,7 +148,7 @@ export const CreateForm = () => {
               className="rounded-md border"
             />
           </div>
-          <Button disabled={isSubmitting || !isValid} type="submit">
+          <Button disabled={!isValid || isSubmitting} type="submit">
             Submit
           </Button>
         </form>

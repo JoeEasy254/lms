@@ -14,29 +14,50 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  username  String
-  userId    String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(uuid())
+  username     String
+  userId       String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  rooms        Room[]
+  isInstructor Boolean  @default(false)
 
-  rooms Room[]
   Posts Posts[]
+
+  Profile Profile?
 }
 
 model Room {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   participants User[]
   name         String
   title        String
   description  String
   date         String
   price        Decimal
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
   userId       String
+  categoryId   String?
+  Category     Category? @relation(fields: [categoryId], references: [id])
 
   @@index([userId])
+}
+
+model Category {
+  id            String        @id @default(uuid())
+  name          String        @unique
+  subcategories Subcategory[]
+  Room          Room[]
+}
+
+model Subcategory {
+  id         String   @id @default(uuid())
+  name       String
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  @@unique([name, categoryId])
 }
 
 model Posts {
@@ -47,4 +68,20 @@ model Posts {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String
+}
+
+model Profile {
+  id        String  @id @default(uuid())
+  firstName String
+  user      User?   @relation(fields: [userId], references: [userId])
+  userId    String  @unique
+  lastName  String
+  headline  String
+  biography String
+  language  String
+  website   String?
+  twitter   String?
+  facebook  String?
+  linkedIn  String?
+  youtube   String?
 }

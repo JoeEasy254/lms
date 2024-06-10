@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,23 +16,6 @@ export default function SettingsPage() {
   return (
     <div className="flex flex-col ">
       <main className="flex flex-col space-y-3">
-        <section className="col-span-1 md:col-span-3">
-          <Card>
-            <CardHeader>
-              <CardTitle>Course</CardTitle>
-              <CardDescription>
-                Manage your courses and participants.
-              </CardDescription>
-              <div className="flex items-center gap-4 mt-4">
-                <RoomBtnEvents />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <ShowcaseRooms />
-            </CardContent>
-          </Card>
-        </section>
-
         <section className="col-span-1 md:col-span-1">
           <Card>
             <CardHeader>
@@ -67,6 +49,26 @@ export default function SettingsPage() {
                   <Button size="sm" variant="outline">
                     Create Article
                   </Button>
+                </Link>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <ShowcasePosts />
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="col-span-1 md:col-span-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Instructor</CardTitle>
+              <CardDescription>Are you an instructor?.</CardDescription>
+              <div className="flex items-center gap-4 mt-4 flex-wrap">
+                <Link
+                  href="/dashboard/instructor
+      "
+                >
+                  <Button>view Profile</Button>
                 </Link>
               </div>
             </CardHeader>

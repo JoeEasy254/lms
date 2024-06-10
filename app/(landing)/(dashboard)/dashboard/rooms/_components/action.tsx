@@ -1,10 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 import { db } from "@/utils/db";
 import { useAuth } from "@clerk/nextjs";
 import { Room, User } from "@prisma/client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface RoomProps {
@@ -22,15 +24,43 @@ interface RoomProps {
 
 export const CheckIfEnrolled = ({
   room,
-  joinRoom,
-  enrollCourse,
 }: {
   room: RoomProps;
   joinRoom: () => void;
   enrollCourse: () => void;
 }) => {
   const auth = useAuth();
+  const router = useRouter();
   const [fetchedRoom, setFetchedRoom] = useState<RoomProps>();
+
+  const JoinRoom = () => {
+    return router.push(`/dashboard/rooms/join/${room.name}/meet`);
+  };
+  // const removeRoom = async () => {
+  //   try {
+  //     const obj = {
+  //       creatorId: room.userId,
+  //       roomId: room.id,
+  //     };
+
+  //     await fetch("/api/room", {
+  //       method: "delete",
+  //       body: JSON.stringify(obj),
+  //     });
+  //     toast({
+  //       title: "Alert",
+  //       description: "room removed",
+  //     });
+
+  //     router.refresh();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  function enrollCourse() {
+    return router.push(`/dashboard/rooms/${room.id}/enroll`);
+  }
 
   useEffect(() => {
     const getRoom = async () => {
@@ -54,7 +84,7 @@ export const CheckIfEnrolled = ({
   function renderButtons() {
     if (userInRoom || isUserInRoomOwner) {
       return (
-        <Button className="w-full" onClick={joinRoom} size="sm">
+        <Button onClick={JoinRoom} size="sm">
           Join Room
         </Button>
       );

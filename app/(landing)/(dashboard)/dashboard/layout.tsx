@@ -44,27 +44,27 @@ export default async function HomeLayout({
       path: "/dashboard/rooms",
       icon: <SquareLibrary />,
     },
-    {
-      name: "Account",
-      path: "/dashboard/myaccount",
-      icon: <UserRoundCog />,
-    },
-    {
-      name: "playground",
-      path: "/dashboard/mirror",
-      icon: <Code />,
-    },
+    // {
+    //   name: "Account",
+    //   path: "/dashboard/myaccount",
+    //   icon: <UserRoundCog />,
+    // },
+    // {
+    //   name: "playground",
+    //   path: "/dashboard/mirror",
+    //   icon: <Code />,
+    // },
 
-    {
-      name: "quizzes",
-      path: "/dashboard/quizzes",
-      icon: <BookOpenCheck />,
-    },
-    {
-      name: "Leaderboard",
-      path: "/dashboard/leaderboard",
-      icon: <Trophy />,
-    },
+    // {
+    //   name: "quizzes",
+    //   path: "/dashboard/quizzes",
+    //   icon: <BookOpenCheck />,
+    // },
+    // {
+    //   name: "Leaderboard",
+    //   path: "/dashboard/leaderboard",
+    //   icon: <Trophy />,
+    // },
     {
       name: "Blog",
       path: "/dashboard/blog",

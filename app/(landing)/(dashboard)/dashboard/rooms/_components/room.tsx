@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { CheckIfEnrolled } from "./action";
+import Link from "next/link";
 interface RoomProps {
   id: string;
   name: string;
@@ -23,48 +24,6 @@ interface RoomProps {
 }
 
 export default function Room({ room }: { room: RoomProps }) {
-  const router = useRouter();
-  const auth = useAuth();
-
-  const JoinRoom = () => {
-    // (async () => {
-    //   try {
-    //     const info = await axios.post("/api/room/join", { roomId: room.id });
-
-    //     await fetch(`/api/get-participant-token?room=${room.id}`);
-    //   } catch (e) {
-    //     console.error(e);
-    //   }
-    // })();
-    return router.push(`/dashboard/rooms/join/${room.id}/prejoin`);
-  };
-
-  const removeRoom = async () => {
-    try {
-      const obj = {
-        creatorId: room.userId,
-        roomId: room.id,
-      };
-
-      await fetch("/api/room", {
-        method: "delete",
-        body: JSON.stringify(obj),
-      });
-      toast({
-        title: "Alert",
-        description: "room removed",
-      });
-
-      router.refresh();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  function enrollCourse() {
-    return router.push(`/dashboard/rooms/${room.id}/enroll`);
-  }
-
   return (
     <div className="md:w-[400px]  lg:w-auto bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-sm mt-3 ">
       <Image
@@ -81,19 +40,14 @@ export default function Room({ room }: { room: RoomProps }) {
         <h3 className="text-lg font-medium mb-2">{room.name}</h3>
         <div>
           <ul className="flex space-y-4 flex-col ">
-            <li className="flex justify-between">
-              <span>Title: </span> {room.title}
-            </li>
+            <li className="flex justify-between">{room.title}</li>
             <li className="flex space-x-2 justify-between">
-              <span>Description: </span>{" "}
               <p className="line-clamp-4">{room.description}</p>
             </li>
+
             <li className="flex justify-between items-center">
-              <p>Price: </p> <Badge variant="outline"> {room.price}</Badge>
-            </li>
-            <li className="flex justify-around">
-              <span>Date: </span>{" "}
-              <p className="line-clamp-4">{room.date.split("T")[0]}</p>
+              <span>Kickoff: </span>{" "}
+              <Badge className="line-clamp-4">{room.date.split("T")[0]}</Badge>
             </li>
           </ul>
         </div>
@@ -104,16 +58,15 @@ export default function Room({ room }: { room: RoomProps }) {
         </div>
         <div className="flex items-center  justify-between">
           {/* here show join or enroll btns */}
-          <CheckIfEnrolled
+          {/* <CheckIfEnrolled
             room={room}
             joinRoom={JoinRoom}
             enrollCourse={enrollCourse}
-          />
-          {auth.userId == room.userId && (
-            <Button variant={"ghost"} onClick={removeRoom} size="sm">
-              <Trash /> Remove
-            </Button>
-          )}
+          /> */}
+
+          <Link href={`/dashboard/rooms/view/${room.id}`}>
+            <Button>View</Button>
+          </Link>
         </div>
       </div>
     </div>

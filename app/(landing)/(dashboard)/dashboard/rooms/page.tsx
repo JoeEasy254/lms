@@ -7,6 +7,8 @@ import PaginatePages from "@/components/rootComponents/Paginate";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "@/components/rootComponents/loading";
+import { Button } from "@/components/ui/button";
+import { CategoryDropdownMenu } from "./_components/category-dropdown-menu";
 
 export default function RoomPage() {
   const [rooms, setRooms] = useState([]);
@@ -63,13 +65,18 @@ export default function RoomPage() {
       <div className="">
         <div className="flex flex-col md:space-y-3 md:flex-col space-y-3 lg:space-y-0 lg:flex-row justify-between mb-6">
           <h1 className="text-2xl font-bold">Explore Courses</h1>
-          <div className="relative w-full max-w-md">
-            <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400" />
-            <Input
-              className="w-full pl-10 pr-4 py-2 rounded-md bg-white shadow-sm dark:bg-gray-950"
-              placeholder="Search rooms..."
-              type="search"
-            />
+          <div className="">
+            <div className="flex items-center space-x-2">
+              <CategoryDropdownMenu />
+              <div className="relative w-full max-w-md">
+                <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400" />
+                <Input
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-white shadow-sm dark:bg-gray-950"
+                  placeholder="Search rooms..."
+                  type="search"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
