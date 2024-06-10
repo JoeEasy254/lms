@@ -5,7 +5,7 @@ import { NextRequest as req } from 'next/server'
 
 export async function POST(request: Request) {
     try {
-        const { name, title, description, price, date, imageUrl } = await request.json()
+        const { name, title, description, price, date, imageUrl, category, subcategory } = await request.json()
         const { userId } = auth()
         const current = await currentUser()
 
@@ -16,6 +16,8 @@ export async function POST(request: Request) {
                 name,
                 title,
                 description,
+                Category: category,
+                SubCategory: subcategory,
                 date,
                 imageUrl,
                 price,

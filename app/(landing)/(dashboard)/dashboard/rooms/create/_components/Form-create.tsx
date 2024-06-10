@@ -5,7 +5,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { UploadButton } from "@/utils/uploadthing";
 import { Calendar } from "@/components/ui/calendar";
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,20 +26,28 @@ import { Input } from "@/components/ui/input";
 
 import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
+import { Category, Subcategory } from "@prisma/client";
+import { set } from "date-fns";
 
 const formSchema = z.object({
   name: z.string().min(2),
   title: z.string().min(2),
   description: z.string().min(5),
   price: z.coerce.number(),
+  category: z.string(),
+  subCategory: z.string(),
 });
 
 export const CreateForm = () => {
   const [imageUrl, setImageUrl] = useState("");
   const router = useRouter();
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [category, setCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
+  const [subCategories, setSubCategories] = useState<Category[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,6 +55,8 @@ export const CreateForm = () => {
       title: "",
       description: "",
       price: 0,
+      category: "",
+      subCategory: "",
     },
   });
   const { isSubmitting, isValid } = form.formState;
@@ -55,6 +71,8 @@ export const CreateForm = () => {
           title: values.title,
           price: values.price,
           imageUrl: imageUrl,
+          category: category,
+          subCategory: subCategory,
           date,
           description: values.description,
         }),
@@ -73,6 +91,32 @@ export const CreateForm = () => {
       });
     }
   }
+
+  const fetchCategories = async () => {
+    const res = await fetch("/api/room/category");
+    const data = await res.json();
+    setCategories(data);
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchSubCategories = () => {
+    const newCategories = [...categories];
+    const subCategory = newCategories.filter(
+      (c: Category) => c.name == category
+    );
+
+    if (subCategory[0]) {
+      console.log("sub", subCategory[0].subcategories);
+      setSubCategories(subCategory[0].subcategories);
+    }
+  };
+
+  useEffect(() => {
+    fetchSubCategories();
+  }, [category]);
 
   return (
     <>
@@ -141,6 +185,56 @@ export const CreateForm = () => {
               </FormItem>
             )}
           />
+          <div>
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category</FormLabel>
+                  <Select onValueChange={(value) => setCategory(value)}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.map((category, index) => (
+                        <SelectItem key={index} value={category.name}>
+                          {category.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormDescription>Course category</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="subCategory"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Sub Category</FormLabel>
+                  <Select onValueChange={(value) => setSubCategory(value)}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {subCategories.map((category, index) => (
+                        <SelectItem key={index} value={category.name}>
+                          {category.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormDescription>Course category</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
           <div>
             <h1>Date</h1>
 

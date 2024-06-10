@@ -26,13 +26,13 @@ export default async function CourseView({ params }: CourseViewProps) {
       <div className="flex justify-center flex-col space-y-3">
         <h1 className="text-center lg:text-3xl">{course?.title}</h1>
 
-        <p>{course?.description}</p>
+        <p className="text-center">{course?.description}</p>
       </div>
 
       <div className="flex justify-center flex-col space-y-4">
         <img
           alt="Room Thumbnail"
-          src="/pic.jpg"
+          src={course?.imageUrl!}
           className="object-cover h-[60vh] object-center rounded-md"
           style={{
             aspectRatio: "400/225",
