@@ -1,7 +1,7 @@
 import { db } from "@/utils/db"
 import { auth } from "@clerk/nextjs/server"
 import { Posts, User } from "@prisma/client"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { NextRequest as req } from 'next/server'
 
 export async function POST(request: Request) {
@@ -39,12 +39,22 @@ export async function POST(request: Request) {
 }
 
 
-export async function GET(request: req) {
+export async function GET(request: NextRequest) {
     try {
         // const { skip, take } = await request.json()
 
+        const articleId = request.nextUrl.searchParams.get("articleId")
 
 
+        if (articleId) {
+            const article = await db.posts.findFirst({
+                where: {
+                    id: articleId,
+                },
+            });
+
+            return NextResponse.json(article)
+        }
 
         const results: any = await db.posts.findMany({
 

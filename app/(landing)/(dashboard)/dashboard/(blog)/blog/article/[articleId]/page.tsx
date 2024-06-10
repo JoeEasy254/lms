@@ -1,19 +1,26 @@
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
-import { db } from "@/utils/db";
-import { currentUser } from "@clerk/nextjs/server";
+"use client";
 
-export default async function ArticlePage({
+import { Posts } from "@prisma/client";
+import MDEditor from "@uiw/react-md-editor";
+import { useEffect, useState } from "react";
+
+export default function ArticlePage({
   params,
 }: {
   params: { articleId: string };
 }) {
-  const article = await db.posts.findFirst({
-    where: {
-      id: params?.articleId,
-    },
-  });
+  const [article, setArticle] = useState<Posts>();
+  const fetchSingleArticle = async () => {
+    const res = await fetch(`/api/posts?articleId=${params.articleId}`);
+    const data = await res.json();
 
-  const auth = await currentUser();
+    setArticle(data);
+  };
+  useEffect(() => {
+    fetchSingleArticle();
+  }, [params.articleId]);
+
+  const markdown = article?.content;
 
   return (
     <>
@@ -22,24 +29,15 @@ export default async function ArticlePage({
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
             {article?.title}
           </h1>
-          <div className="flex items-center gap-4 mt-4 text-sm text-gray-500 dark:text-gray-400">
-            <Avatar>
-              <AvatarImage alt="@shadcn" src={auth?.imageUrl} />
-              <AvatarFallback>
-                {auth?.firstName?.charAt(0) || auth?.lastName?.charAt(0)}
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <div className="font-medium">
-                {auth?.firstName || auth?.lastName}
-              </div>
-              {/* <div>Freelance Writer</div> */}
-            </div>
-          </div>
-          <div
-            className="max-w-screen text-xl"
-            dangerouslySetInnerHTML={{ __html: String(article?.content) }}
-          ></div>
+
+          {markdown ? (
+            <MDEditor.Markdown
+              source={markdown}
+              style={{ whiteSpace: "pre-wrap" }}
+            />
+          ) : (
+            <p>No content available.</p>
+          )}
         </article>
       </div>
     </>

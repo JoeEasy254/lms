@@ -1,41 +1,19 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { PlusCircleIcon} from "lucide-react";
-import dynamic from "next/dynamic";
-import { useState } from "react";
-import "react-quill/dist/quill.snow.css";
+import { PlusCircleIcon } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
+import MDEditor from "@uiw/react-md-editor";
+import { useState } from "react";
 
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function WriteArticle() {
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [toggle, setToggle] = useState(false);
 
-  console.log(title);
   const onToggle = () => {
     setToggle(!toggle);
-  };
-
-  const modules = {
-    toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
-      [{ size: [] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
-      ["link", "image", "video"],
-      ["clean"],
-    ],
-    clipboard: {
-      matchVisual: false,
-    },
   };
 
   const onPublish = async () => {
@@ -45,7 +23,7 @@ export default function WriteArticle() {
         body: JSON.stringify({
           content: value,
           title,
-        })
+        }),
       });
 
       toast({
@@ -60,6 +38,15 @@ export default function WriteArticle() {
       console.log(error);
     }
   };
+
+   const handleChange = (
+     value: string | undefined,
+     event: React.ChangeEvent<HTMLTextAreaElement> | undefined
+   ) => {
+     if (typeof value == "string") {
+       setValue(value);
+     }
+   };
   return (
     <>
       <div className="mx-5 my-4">
@@ -82,12 +69,9 @@ export default function WriteArticle() {
             />
           </div>
           <div>
-            <ReactQuill
-              className="transition-all md:mx-4"
-              theme="snow"
-              value={value}
-              onChange={setValue}
-              modules={modules}
+            <MDEditor
+              value={value as string}
+              onChange={(value, event) => handleChange(value, event)}
             />
 
             <Button

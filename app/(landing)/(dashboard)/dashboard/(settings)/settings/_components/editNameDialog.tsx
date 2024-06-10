@@ -31,6 +31,8 @@ import { Posts } from "@prisma/client";
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import MDEditor from "@uiw/react-md-editor";
 
 interface EditDialogNameProps {
   id: string;
@@ -83,11 +85,13 @@ function EditPost({
   };
   id: string;
 }) {
+  const [value, setValue] = useState(data.content);
+  const { title } = data;
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
+      title: title,
       content: "",
     },
   });
@@ -113,6 +117,15 @@ function EditPost({
       console.log(error);
     }
   }
+
+  const handleChange = (
+    value: string | undefined,
+    event: React.ChangeEvent<HTMLTextAreaElement> | undefined
+  ) => {
+    if (typeof value == "string") {
+      setValue(value);
+    }
+  };
   return (
     <div>
       <Form {...form}>
@@ -124,12 +137,21 @@ function EditPost({
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder={data.title} {...field} />
+                  <Input
+                    defaultValue={data.title}
+                    placeholder={data.title}
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription>Edit article title.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
+          />
+
+          <MDEditor
+            value={value as string}
+            onChange={(value, event) => handleChange(value, event)}
           />
           <Button type="submit">Submit</Button>
         </form>

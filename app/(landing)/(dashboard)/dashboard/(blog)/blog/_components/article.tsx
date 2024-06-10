@@ -5,7 +5,7 @@ import { Posts } from "@prisma/client";
 import { truncateString } from "./helpers/truncateString";
 import { Badge } from "@/components/ui/badge";
 import TimeAgo from "javascript-time-ago";
-
+import MDEditor from "@uiw/react-md-editor";
 // English.
 import en from "javascript-time-ago/locale/en";
 
@@ -21,12 +21,10 @@ export default function Article({ post }: { post: Posts }) {
           <h3 className="mb-2 text-xl font-bold">{post.title}</h3>
 
           {post && (
-            <p
-              className="text-gray-500 line-clamp-5"
-              dangerouslySetInnerHTML={{
-                __html: truncateString(post.content, 200),
-              }}
-            ></p>
+            <MDEditor.Markdown
+              source={truncateString(post.content, 200)}
+              style={{ whiteSpace: "pre-wrap" }}
+            />
           )}
           <Link
             className="mt-4 inline-flex items-center "
