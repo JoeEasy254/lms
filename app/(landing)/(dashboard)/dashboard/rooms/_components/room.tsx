@@ -13,14 +13,16 @@ import Link from "next/link";
 interface RoomProps {
   id: string;
   name: string;
-  createdAt: Date;
-  updatedAt: Date;
   title: string;
-  imageUrl: string;
   description: string;
   date: string;
   price: number;
+  createdAt: Date;
+  updatedAt: Date;
   userId: string;
+  imageUrl: string;
+  Category: string;
+  SubCategory: string;
   participants: User[];
 }
 

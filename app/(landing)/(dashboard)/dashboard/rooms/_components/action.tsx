@@ -9,26 +9,29 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+// participants: {
+//         id: string;
+//         username: string;
+//         userId: string;
+//         createdAt: Date;
+//         updatedAt: Date;
+//         isInstructor: boolean;
+//     }[];
+// } & {
+//     id: string;
+//     name: string;
+//     title: string;
+//     description: string;
+//     ... 7 more ...;
+//     SubCategory: string | null;
+// }
+
 interface RoomProps {
-  id: string;
-  name: string;
-  createdAt: Date;
-  updatedAt: Date;
-  title: string;
-  description: string;
-  date: string;
-  price: number;
-  userId: string;
-  participants: User[];
+  room: Room & { participants: User[] };
+
 }
 
-export const CheckIfEnrolled = ({
-  room,
-}: {
-  room: RoomProps;
-  joinRoom: () => void;
-  enrollCourse: () => void;
-}) => {
+export const CheckIfEnrolled = ({ room }: RoomProps) => {
   const auth = useAuth();
   const router = useRouter();
   const [fetchedRoom, setFetchedRoom] = useState<RoomProps>();
@@ -75,7 +78,7 @@ export const CheckIfEnrolled = ({
     getRoom();
   }, []);
 
-  const userInRoom = fetchedRoom?.participants.some(
+  const userInRoom = fetchedRoom?.room.participants.some(
     (participant) => participant.userId === auth.userId
   );
 

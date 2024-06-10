@@ -9,6 +9,7 @@ import axios from "axios";
 import Loader from "@/components/rootComponents/loading";
 import { Button } from "@/components/ui/button";
 import { CategoryDropdownMenu } from "./_components/category-dropdown-menu";
+import { Room as RoomType } from "@prisma/client";
 
 export default function RoomPage() {
   const [rooms, setRooms] = useState([]);
@@ -96,6 +97,9 @@ export default function RoomPage() {
                 createdAt: Date;
                 updatedAt: Date;
                 userId: string;
+                imageUrl: string;
+                Category: string;
+                SubCategory: string;
               } & { participants: any },
               index: number
             ) => (
