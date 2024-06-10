@@ -28,7 +28,6 @@ import { useEffect, useState } from "react";
 
 interface RoomProps {
   room: Room & { participants: User[] };
-
 }
 
 export const CheckIfEnrolled = ({ room }: RoomProps) => {
@@ -78,9 +77,11 @@ export const CheckIfEnrolled = ({ room }: RoomProps) => {
     getRoom();
   }, []);
 
-  const userInRoom = fetchedRoom?.room.participants.some(
-    (participant) => participant.userId === auth.userId
-  );
+  const userInRoom =
+    fetchedRoom?.room &&
+    fetchedRoom?.room.participants.some(
+      (participant) => participant.userId === auth.userId
+    );
 
   const isUserInRoomOwner: boolean = room.userId === auth.userId;
 
