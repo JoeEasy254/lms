@@ -16,6 +16,7 @@ interface RoomProps {
   createdAt: Date;
   updatedAt: Date;
   title: string;
+  imageUrl: string;
   description: string;
   date: string;
   price: number;

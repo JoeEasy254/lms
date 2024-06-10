@@ -40,14 +40,26 @@ const formSchema = z.object({
   subCategory: z.string(),
 });
 
+interface sub_categoriesType {
+  id: string;
+  name: string;
+  categoryId: string;
+}
+[];
+interface CategoryType {
+  id: string;
+  name: string;
+  subcategories: any;
+}
+
 export const CreateForm = () => {
   const [imageUrl, setImageUrl] = useState("");
   const router = useRouter();
   const [date, setDate] = useState<Date | undefined>(new Date());
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
-  const [subCategories, setSubCategories] = useState<Category[]>([]);
+  const [subCategories, setSubCategories] = useState<CategoryType[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -61,7 +73,6 @@ export const CreateForm = () => {
   });
   const { isSubmitting, isValid } = form.formState;
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     // create a user
     try {
       await fetch("/api/room", {
@@ -105,12 +116,13 @@ export const CreateForm = () => {
   const fetchSubCategories = () => {
     const newCategories = [...categories];
     const subCategory = newCategories.filter(
-      (c: Category) => c.name == category
+      (c: CategoryType) => c.name == category
     );
 
     if (subCategory[0]) {
-      console.log("sub", subCategory[0].subcategories);
-      setSubCategories(subCategory[0].subcategories);
+      // console.log("sub", subCategory[0].subcategories);
+      const sub_categories = subCategory[0].subcategories;
+      setSubCategories(sub_categories);
     }
   };
 
