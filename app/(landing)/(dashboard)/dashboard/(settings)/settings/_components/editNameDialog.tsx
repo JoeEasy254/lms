@@ -92,7 +92,7 @@ function EditPost({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: title,
-      content: "",
+      content: value,
     },
   });
 
