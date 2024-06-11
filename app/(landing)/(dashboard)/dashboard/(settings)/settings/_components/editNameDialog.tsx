@@ -86,6 +86,8 @@ function EditPost({
   id: string;
 }) {
   const [value, setValue] = useState(data.content);
+
+  console.log(value);
   const { title } = data;
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -103,7 +105,8 @@ function EditPost({
         method: "put",
         body: JSON.stringify({
           id,
-          data: values,
+          title,
+          content: value,
         }),
       });
 

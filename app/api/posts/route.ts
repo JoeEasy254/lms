@@ -101,11 +101,13 @@ export async function DELETE(request: Request) {
 
 export async function PUT(request: Request) {
     const { userId } = auth()
-    const { data, id } = await request.json()
-
-
+    const { title, content, id } = await request.json()
+    console.table({
+        title,
+        content
+    })
     try {
-        const { title } = data
+
 
         // check if this user can edit this post
         const isUserLegit = await db.posts.findFirst({
@@ -126,7 +128,8 @@ export async function PUT(request: Request) {
                 id: isUserLegit.id
 
             }, data: {
-                title
+                title,
+                content,
             }
         })
 
